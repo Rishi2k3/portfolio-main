@@ -2,7 +2,7 @@ import transporter from '../config/nodemailer';
 
 const sendMail = async (email: string, subject: string, htmlContent?: string) => {
     const mailOptions = {
-        from: '"Rishi Agarwal" <rishiagarwal2k3@gmail.com>',
+        from: ' "Rishi Agarwal" <rishiagarwal2k3@gmail.com>',
         to: email,
         subject,
         html: htmlContent || undefined, // Use HTML if provided, otherwise undefined

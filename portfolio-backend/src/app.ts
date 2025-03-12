@@ -9,9 +9,9 @@ const app = express();
 app.use(
     cors({
         origin: [
-            'https://fi.amanillah.com',
-            'https://amanillah.com',
-            'https://www.amanillah.com',
+            'https://rishiaga2k3.com',
+            'https://rishi2k3.com',
+            'https://www.rishi2k3.com',
             'http://localhost:3010',
         ], // Allow only your frontend domain
         credentials: true, // Allow credentials if needed

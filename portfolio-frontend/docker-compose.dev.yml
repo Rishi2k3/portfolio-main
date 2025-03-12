@@ -14,5 +14,5 @@ services:
             - .:/app # Mounts local project files into the container
             - /app/node_modules # Prevents overwriting node_modules inside the container
         environment:
-            - NEXT_PUBLIC_BACKEND_URI=https://portfolio-backend.amanillah.com/
+            - NEXT_PUBLIC_BACKEND_URI=http://localhost:3000
         command: ['pnpm', 'run', 'dev']
