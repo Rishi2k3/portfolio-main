@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
                             <svg
                                 width="100%"
                                 height="100%"
-                                className="absolute top-0 left-0 opacity-100 animate-floating"
+                                className="absolute top-0 left-0 opacity-100 animate-floating "
                             >
                                 <text
                                     x="50%"
