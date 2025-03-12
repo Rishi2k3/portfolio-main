@@ -20,7 +20,7 @@ const contactFormController = async (req: Request, res: Response) => {
         // Send emails concurrently
         const [userMailInfo, adminMailInfo] = await Promise.all([
             sendMail(email, `Thank You ${name} for Reaching Out!`, userTemplate),
-            sendMail('fiamanillahb2@gmail.com', 'Portfolio Contact Form Submission', adminTemplate),
+            sendMail('Rishiagarwal2k3@gmail.com', 'Portfolio Contact Form Submission', adminTemplate),
         ]);
 
         res.status(200).json({ userMailInfo, adminMailInfo });

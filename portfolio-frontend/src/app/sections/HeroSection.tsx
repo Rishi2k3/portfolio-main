@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
                                     fill="transparent"
                                     className="text-primary stroke-primary stroke-[5px] opacity-10"
                                 >
-                                    Fi Amanillah
+                                    Rishi Agarwal
                                 </text>
                             </svg>
                         </div>
@@ -90,7 +90,7 @@ const HeroSection: React.FC = () => {
 
                         <TextReveal className={'bg-primary'}>
                             <h1 className="text-6xl font-bold relative text-primary">
-                                Fi Amanillah
+                                Rishi Agarwal
                             </h1>
                         </TextReveal>
 
@@ -141,7 +141,7 @@ const HeroSection: React.FC = () => {
                             >
                                 <Image
                                     src={heroImage}
-                                    alt="Fi Amanillah"
+                                    alt="Rishi Agarwal"
                                     priority
                                     className="w-[90%] drop-shadow-[2px_-2px_2px_rgba(0,0,0,1)]"
                                 />

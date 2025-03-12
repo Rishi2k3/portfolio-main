@@ -10,7 +10,7 @@ interface SocialLink {
 // Array of social links
 const socialLinks: SocialLink[] = [
     {
-        href: 'https://www.facebook.com/fiamanillah.b2/',
+        href: 'https://www.facebook.com/rishi.agarwal.334491/',
         icon: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ const socialLinks: SocialLink[] = [
         ),
     },
     {
-        href: 'https://www.linkedin.com/in/fi-amanillah/',
+        href: 'https://www.linkedin.com/in/rishi-agarwal-b57721175/',
         icon: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const socialLinks: SocialLink[] = [
         ),
     },
     {
-        href: 'https://github.com/fiamanillah',
+        href: 'https://github.com/Rishi2k3',
         icon: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const socialLinks: SocialLink[] = [
         ),
     },
     {
-        href: 'mailto:fi@amanillah.com',
+        href: 'mailto:rishiagarwal2k3@gmail.com',
         icon: (
             <svg
                 xmlns="http://www.w3.org/2000/svg"

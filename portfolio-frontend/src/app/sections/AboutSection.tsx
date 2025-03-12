@@ -6,10 +6,7 @@ import HugeiconsUniversity from '@/assets/icons/HugeiconsUniversity';
 import * as motion from 'motion/react-client';
 
 const aboutText = `
-    Hi, I’m Fi Amanillah, a passionate and detail-oriented MERN Stack Developer with expertise in building dynamic, responsive, and user-friendly web applications. 
-    Proficient in React, Redux, Node.js, Express, MongoDB, and Mongoose, I specialize in crafting seamless full-stack solutions. My skill set also includes modern 
-    front-end technologies like Tailwind CSS, JavaScript, HTML, and CSS, ensuring visually appealing and efficient designs. With a strong foundation in Linux and a 
-    commitment to clean, maintainable code, I thrive on solving complex problems and delivering high-quality digital experiences. Let’s build something amazing together!
+    Hi, I’m Rishi Agarwal, a passionate and detail-oriented full-stack developer specializing in the MERN stack, Next.js, and cloud technologies. With expertise in React, Redux, Node.js, Express, and MongoDB, I build dynamic, scalable, and responsive web applications. My skill set includes modern front-end frameworks like Tailwind CSS, JavaScript, and UI/UX tools like Figma. I also have experience with DevOps, CI/CD, and cloud platforms such as AWS, Azure, and GCP. As a tutor at Lessonpal, I teach programming, data structures, and computer science concepts to students worldwide, strengthening my problem-solving and mentoring skills. Committed to writing clean, efficient code, I thrive on solving complex challenges. Let’s build something amazing together!
 `;
 
 const AboutSection = () => {
@@ -41,14 +38,14 @@ const AboutSection = () => {
                     <div className="w-60 h-60">
                         <Image
                             src={profile1}
-                            alt="Fi Amanillah"
+                            alt="Rishi agarwal"
                             className="rounded-lg w-full h-full object-cover"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span>fi@amanillah.com</span>
-                        <span>+880608505647</span>
-                        <span>Mirpur 1, Dhaka, Bangladesh</span>
+                        <span>Rishiagarwal2k3@gmail.com</span>
+                        <span>+918171920999</span>
+                        <span>New Delhi , India</span>
                     </div>
                 </motion.div>
             </div>
@@ -66,12 +63,12 @@ const AboutSection = () => {
                         <div className="border-l-4 border-primary pl-2">
                             <h3>Bachelor in Computer Science and Engineering</h3>
                             <span className="flex items-center gap-2">
-                                <HugeiconsUniversity /> European University of Bangladesh
+                                <HugeiconsUniversity /> Maharaja Agrasain Institute of Technology
                             </span>
                         </div>
                     </div>
                     <div className="max-mobile-lg:mt-2">
-                        <span>2024 - present</span>
+                        <span>2022 - present</span>
                     </div>
                 </motion.div>
             </div>

@@ -12,8 +12,8 @@ const oxanium = Oxanium({
 });
 
 export const metadata = {
-    title: 'Fi Amanillah',
-    description: 'Fi Amanillah - Portfolio',
+    title: 'Rishi Agarwal',
+    description: 'Rishi Agarwal - Portfolio',
 };
 
 // Define Props Type
