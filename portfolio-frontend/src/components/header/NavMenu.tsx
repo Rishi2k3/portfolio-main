@@ -15,6 +15,7 @@ export default function NavMenu() {
         { link: '#about', name: 'About' },
         { link: '#skills', name: 'Skills' },
         { link: '#projects', name: 'Projects' },
+        { link: '#leetcode', name: 'LeetCode' },
         { link: '#contact', name: 'Contact' },
     ];
 

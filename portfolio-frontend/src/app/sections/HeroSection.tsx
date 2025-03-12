@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
                             <svg
                                 width="100%"
                                 height="100%"
-                                className="absolute top-0 left-0 opacity-100 animate-floating "
+                                className="absolute top-0 left-0 opacity-100 animate-floating object-contain "
                             >
                                 <text
                                     x="50%"
@@ -143,7 +143,7 @@ const HeroSection: React.FC = () => {
                                     src={heroImage}
                                     alt="Rishi Agarwal"
                                     priority
-                                    className="w-[90%] drop-shadow-[2px_-2px_2px_rgba(0,0,0,1)]"
+                                    className="w-[80%] ml-20 mt-20 drop-shadow-[2px_-2px_2px_rgba(0,0,0,1)]"
                                 />
 
                                 {/* Head Shine Animation */}
@@ -159,7 +159,7 @@ const HeroSection: React.FC = () => {
                                         repeat: Infinity,
                                         ease: 'easeInOut',
                                     }}
-                                    className="absolute -top-10 max-mobile-sm:-top-12 max-mobile-sm:right-[25%] right-[30%] w-24"
+                                    className="absolute -top-0 max-mobile-sm:-top-12 max-mobile-sm:right-[25%] right-[30%] w-26"
                                 >
                                     <Image src={headShine} alt="headShine" />
                                 </motion.div>
