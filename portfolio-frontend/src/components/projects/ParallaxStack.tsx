@@ -96,14 +96,14 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
                     {/* Content Section */}
                     <div className="basis-2/6 flex flex-col gap-3 justify-between p-4 max-mobile-sm:p-2 max-mobile-sm:pt-0 relative">
                         <div>
-                            <h2 className="max-mobile-sm:text-2xl">{project.title}</h2>
-                            <p className="max-mobile-sm:text-md max-mobile-sm:max-h-[20vh] max-mobile-sm:overflow-y-auto max-mobile-sm:text-ellipsis">
+                            <h1 className="max-mobile-sm:text-2xl">{project.title}</h1>
+                            <p className="text-lg max-mobile-sm:text-md max-mobile-sm:max-h-[20vh] max-mobile-sm:overflow-y-auto max-mobile-sm:text-ellipsis">
                                 {project.description}
                             </p>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-2 mt-3">
                                 {project.techUsed.map(tech => (
                                     <Badge
-                                        className="rounded-sm text-sm shadow-lg text-nowrap"
+                                        className="rounded-sm text-base shadow-lg text-nowrap"
                                         key={tech}
                                     >
                                         {tech}
@@ -114,11 +114,18 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
 
                         {/* Buttons Section */}
                         <div className="flex gap-2 items-end justify-between">
-                            <div className="flex gap-2">
-                                <Button>
-                                    Code
-                                    <Code className="translate-y-[-2.5px]" />
+                            <div className="flex gap-3 h-15">
+                                <Link
+                                href={project.codeLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-foreground no-underline"
+                                >
+                                <Button className='flex items-center  text-base font-bold mt-0.5 '>
+                                    Live Website
+                                    <Code className="translate-y-[-2.5px] mt-1" />
                                 </Button>
+                                </Link>
                                 <Link
                                     href={project.demoLink}
                                     target="_blank"
@@ -127,10 +134,10 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
                                 >
                                     <Button
                                         variant="outline"
-                                        className="flex items-center font-bold"
+                                        className="flex items-center  text-base font-bold h-10 "
                                     >
-                                        Demo
-                                        <SquareArrowOutUpRight className="translate-y-[-2.5px]" />
+                                        Demo <SquareArrowOutUpRight className="translate-y-[-2.5px] mt-1" />
+                                        
                                     </Button>
                                 </Link>
                             </div>

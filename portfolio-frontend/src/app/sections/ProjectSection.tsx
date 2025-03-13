@@ -20,70 +20,87 @@ interface Project {
     techUsed: string[];
     demoLink: string;
     codeLink: string;
+    Github: string;
 }
 
 // Array of projects
 const projects: Project[] = [
     {
         id: 1,
-        title: 'ParcelPop - Smart Parcel Delivery',
-        description:
-            'ParcelPop is a secure and efficient parcel delivery platform that integrates advanced authentication and role-based access control. It allows users to send, track, and receive packages seamlessly, with a dedicated dashboard for managing orders.',
+        title: 'Cipher Flow - Cross Chain Asset',
+        description:"Cipher Flow is a cross-chain asset transfer system enabling secure lock-and-mint transactions between two Blockchains. It has an interactive UI with MetaMask connectivity to display live transfer status and proof-of-transfer logs",
         image: projectImage,
         color: 'bg-card',
         logo: linux,
-        techUsed: ['React js', 'Node js', 'Mongodb', 'Mongoose', 'Express js'],
-        demoLink: 'https://parcelpop-project.web.app/',
-        codeLink: '',
+        techUsed: [ 'Solidity', 'Hardhat', 'Ethers.js', 'React.js'],
+        demoLink: 'https://drive.google.com/file/d/1YgMzsifBlmgMkxFzQX8oKi8OBgIWuw0P/view',
+        codeLink: 'https://cipher-flow-smoky.vercel.app/',
+        Github:"",
     },
     {
         id: 2,
-        title: 'Weatherium - Live Weather Updates',
-        description:
-            'Weatherium is a real-time weather forecasting application that provides users with up-to-date weather conditions, temperature, humidity, wind speed, and more. It features a sleek UI, location-based weather updates, and supports multiple cities worldwide.',
+        title: 'Zeeflix - Movie website',
+        description: " Zeeflix is a platform where you can search details about any movie. It Highlights the use of DOM manipulation, while using the Movie list API."
+            ,
         image: projectImage2,
         color: 'bg-card',
         logo: linux,
-        techUsed: ['React js', 'Open Weather Api'],
-        demoLink: 'https://weatherium.amanillah.com/',
-        codeLink: '',
+        techUsed: ['HTML', 'CSS','Javascript','API'],
+        demoLink: 'https://github.com/Rishi2k3/movie-app-',
+        codeLink: 'https://movie-app-rishi.netlify.app',
+        Github:"",
     },
     {
         id: 3,
-        title: 'TalkMates - Connect, Learn, and Grow',
-        description:
-            'TalkMates is an online tutor booking platform that connects learners with expert tutors worldwide. It offers personalized learning experiences, flexible scheduling, secure payments, and global networking to help users enhance their skills in various subjects and languages. 🚀',
+        title: 'Razorpay - Power your finance',
+        description:'It is a fully responsive Razorpay clone using HTML, Tailwind CSS, and JavaScript,Recreated core UI elements, layout, and design to closely mirror the original website.Ensured mobile-first responsiveness for seamless performance across different screen sizes',
         image: projectImage3,
         color: 'bg-card',
         logo: linux,
-        techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-        demoLink: 'https://ph-a11.web.app/',
-        codeLink: '',
+        techUsed: ['HTML', 'Tailwind CSS', 'Java Script', 'Responsive'],
+        demoLink: 'https://github.com/Rishi2k3/razorpay_clone',
+        codeLink: 'https://razorpay-rishi.vercel.app',
+        Github:"",
     },
-    {
-        id: 4,
-        title: 'EquiSports - Premium Sports Gear Hub',
-        description:
-            'EquiSports – A sleek and responsive e-commerce platform for sports enthusiasts to browse, purchase, and manage sports equipment. Features secure authentication, dynamic product management, and an interactive UI with smooth animations. Built with React, Tailwind CSS, Firebase, Node.js, Express.js, and MongoDB. 🚀',
-        image: projectImage4,
-        color: 'bg-card',
-        logo: linux,
-        techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-        demoLink: 'https://ph-assignment-10-79f51.web.app/',
-        codeLink: '',
-    },
-    {
-        id: 5,
-        title: 'Career Craft - Your Personalized Career Guide',
-        description:
-            'Career Craft is a comprehensive career counseling platform that provides students and professionals with expert career advice, skill assessments, and personalized career roadmaps. It integrates an AI-driven recommendation system for better decision-making.',
-        image: projectImage5,
-        color: 'bg-card',
-        logo: linux,
-        techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-        demoLink: 'https://ph-assignment9-fiamanillah.netlify.app/',
-        codeLink: '',
-    },
+    // {
+    //     id: 3,
+    //     title: 'TalkMates - Connect, Learn, and Grow',
+    //     description:
+    //         'TalkMates is an online tutor booking platform that connects learners with expert tutors worldwide. It offers personalized learning experiences, flexible scheduling, secure payments, and global networking to help users enhance their skills in various subjects and languages. 🚀',
+    //     image: projectImage3,
+    //     color: 'bg-card',
+    //     logo: linux,
+    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
+    //     demoLink: 'https://ph-a11.web.app/',
+    //     codeLink: '',
+    //     Github:"",
+    // },
+    // {
+    //     id: 4,
+    //     title: 'EquiSports - Premium Sports Gear Hub',
+    //     description:
+    //         'EquiSports – A sleek and responsive e-commerce platform for sports enthusiasts to browse, purchase, and manage sports equipment. Features secure authentication, dynamic product management, and an interactive UI with smooth animations. Built with React, Tailwind CSS, Firebase, Node.js, Express.js, and MongoDB. 🚀',
+    //     image: projectImage4,
+    //     color: 'bg-card',
+    //     logo: linux,
+    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
+    //     demoLink: 'https://ph-assignment-10-79f51.web.app/',
+    //     codeLink: '',
+    //     Github:"",
+    // },
+    // {
+    //     id: 5,
+    //     title: 'Career Craft - Your Personalized Career Guide',
+    //     description:
+    //         'Career Craft is a comprehensive career counseling platform that provides students and professionals with expert career advice, skill assessments, and personalized career roadmaps. It integrates an AI-driven recommendation system for better decision-making.',
+    //     image: projectImage5,
+    //     color: 'bg-card',
+    //     logo: linux,
+    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
+    //     demoLink: 'https://ph-assignment9-fiamanillah.netlify.app/',
+    //     codeLink: '',
+    //     Github:"",
+    // },
 ];
 
 const ProjectSection: React.FC = () => {
