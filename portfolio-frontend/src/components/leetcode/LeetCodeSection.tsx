@@ -1,12 +1,11 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import { Tooltip } from "@mui/material";
+import Image from "next/image";
 
 // Define types for the badge objects based on the actual API response
 interface Badge {
@@ -20,13 +19,6 @@ interface Badge {
 interface UpcomingBadge {
   name: string;
   icon: string;
-}
-
-interface BadgeResponse {
-  badgesCount: number;
-  badges: Badge[];
-  upcomingBadges: UpcomingBadge[];
-  activeBadge: Badge;
 }
 
 // Define the structure of LeetCode data
@@ -50,6 +42,17 @@ interface LeetCodeData {
   currentStreak: number;
   acceptanceRate: string;
   lastUpdated?: number;
+}
+
+// Define error type for better type safety
+interface AxiosErrorResponse {
+  response?: {
+    status: number;
+    headers: {
+      'retry-after'?: string;
+    };
+  };
+  message: string;
 }
 
 // API configuration with proxy URLs
@@ -87,6 +90,20 @@ const HARDCODED_BADGES: Badge[] = [
   }
 ];
 
+// Define types for cache data
+interface CacheData {
+  lastUpdated?: number;
+  [key: string]: unknown;
+}
+
+// Define types for badge data
+interface BadgeData {
+  badges?: Badge[];
+  badgesCount?: number;
+  upcomingBadges?: UpcomingBadge[];
+  activeBadge?: Badge;
+}
+
 // Common utility functions to avoid code duplication
 const utils = {
   // Helper function to format badge icons
@@ -103,13 +120,13 @@ const utils = {
   
   // Cache management
   cache: {
-    get: (key: string) => {
+    get: (key: string): CacheData | null => {
       if (typeof window === 'undefined') return null;
       try {
         const cachedData = localStorage.getItem(key);
         if (!cachedData) return null;
         
-        const parsedData = JSON.parse(cachedData);
+        const parsedData = JSON.parse(cachedData) as CacheData;
         
         // Check if cache is expired
         if (parsedData.lastUpdated && Date.now() - parsedData.lastUpdated > CACHE_EXPIRY) {
@@ -123,7 +140,7 @@ const utils = {
       }
     },
     
-    set: (key: string, data: any) => {
+    set: (key: string, data: Record<string, unknown>) => {
       if (typeof window === 'undefined') return;
       try {
         // Add timestamp for cache expiry check
@@ -157,12 +174,13 @@ const utils = {
           timeout: 8000, // Set reasonable timeout
         });
         return response;
-      } catch (error: any) {
+      } catch (error) {
         // Check if it's the last attempt
-        if (attempt === retries - 1) throw error;
+        const axiosError = error as AxiosErrorResponse;
+        if (attempt === retries - 1) throw axiosError;
         
-        const isRateLimit = error.response?.status === 429;
-        const retryAfter = error.response?.headers?.['retry-after'];
+        const isRateLimit = axiosError.response?.status === 429;
+        const retryAfter = axiosError.response?.headers?.['retry-after'];
         
         // Calculate delay with exponential backoff
         let delayTime: number;
@@ -175,7 +193,7 @@ const utils = {
           currentDelay = currentDelay * 1.5; // Exponential backoff
         }
         
-        console.log(`Attempt ${attempt + 1} failed (${error.message}), retrying in ${delayTime}ms...`);
+        console.log(`Attempt ${attempt + 1} failed (${axiosError.message}), retrying in ${delayTime}ms...`);
         await new Promise(resolve => setTimeout(resolve, delayTime));
       }
     }
@@ -205,7 +223,7 @@ const utils = {
   }),
   
   // Format badges properly from the new API response structure
-  formatBadges: (badgesData: any, debugCallback?: (message: string) => void): {
+  formatBadges: (badgesData: BadgeData, debugCallback?: (message: string) => void): {
     badges: Badge[],
     upcomingBadges?: UpcomingBadge[],
     activeBadge?: Badge
@@ -267,8 +285,9 @@ const utils = {
       // Fallback for unexpected data structure
       debugCallback?.("Could not determine badge format, using fallback");
       return { badges: HARDCODED_BADGES };
-    } catch (err: any) {
-      debugCallback?.(`Error formatting badges: ${err.message}`);
+    } catch (err) {
+      const error = err as Error;
+      debugCallback?.(`Error formatting badges: ${error.message}`);
       return { badges: HARDCODED_BADGES };
     }
   }
@@ -286,7 +305,6 @@ const LeetCodeSection = () => {
   const [debugLog, setDebugLog] = useState<string[]>([]);
   const [showDebug, setShowDebug] = useState(false);
   const [isUsingCachedData, setIsUsingCachedData] = useState(false);
-  const [badgeImages, setBadgeImages] = useState<Set<string>>(new Set());
 
   // Helper to add debug messages
   const addDebugMessage = (message: string) => {
@@ -298,35 +316,39 @@ const LeetCodeSection = () => {
     const allBadges = [...badges];
     if (activeBadge) allBadges.push(activeBadge);
     
-    if (allBadges.length > 0 && !badgeImages.size) {
-      const newBadgeImages = new Set<string>();
-      
+    if (allBadges.length > 0) {
       allBadges.forEach(badge => {
-        if (badge.icon && !newBadgeImages.has(badge.icon)) {
-          newBadgeImages.add(badge.icon);
-          const img = new Image();
+        if (badge.icon) {
+          const img = new window.Image();
           img.src = badge.icon;
+          img.onerror = () => {
+            addDebugMessage(`Failed to preload image: ${badge.icon}`);
+          };
         }
       });
       
       // Also preload upcoming badge images
       upcomingBadges.forEach(badge => {
-        if (badge.icon && !newBadgeImages.has(badge.icon)) {
-          newBadgeImages.add(badge.icon);
-          const img = new Image();
+        if (badge.icon) {
+          const img = new window.Image();
           img.src = badge.icon;
+          img.onerror = () => {
+            addDebugMessage(`Failed to preload image: ${badge.icon}`);
+          };
         }
       });
-      
-      setBadgeImages(newBadgeImages);
     }
-  }, [badges, activeBadge, upcomingBadges, badgeImages]);
+  }, [badges, activeBadge, upcomingBadges]); // Removed dependency on badgeImages
 
   // Main data fetching logic
   useEffect(() => {
     // Try to load from cache first
-    const cachedStats = utils.cache.get(CACHE_KEY_STATS);
-    const cachedBadges = utils.cache.get(CACHE_KEY_BADGES);
+    const cachedStats = utils.cache.get(CACHE_KEY_STATS) as LeetCodeData | null;
+    const cachedBadges = utils.cache.get(CACHE_KEY_BADGES) as {
+      badges: Badge[];
+      upcomingBadges?: UpcomingBadge[];
+      activeBadge?: Badge;
+    } | null;
     
     // If we have valid cached data, use it immediately
     if (cachedStats) {
@@ -337,7 +359,7 @@ const LeetCodeSection = () => {
       setLoading(false);
       setIsUsingCachedData(true);
       
-      addDebugMessage(`Using cached data from ${new Date(cachedStats.lastUpdated).toLocaleString()}`);
+      addDebugMessage(`Using cached data from ${new Date(cachedStats.lastUpdated || Date.now()).toLocaleString()}`);
     }
     
     // Fetch fresh data in the background
@@ -358,14 +380,16 @@ const LeetCodeSection = () => {
         let badgesResponse = null;
         try {
           badgesResponse = await utils.fetchWithRetry(API_CONFIG.badges, 3, 1000);
-        } catch (error: any) {
-          addDebugMessage(`Proxy badges API failed: ${error.message}, trying fallback...`);
+        } catch (error) {
+          const typedError = error as Error;
+          addDebugMessage(`Proxy badges API failed: ${typedError.message}, trying fallback...`);
           
           // If proxy fails, try the direct URL but with no custom headers
           try {
             badgesResponse = await utils.fetchWithRetry(API_CONFIG.fallbackBadges, 2, 1000);
-          } catch (fallbackError: any) {
-            addDebugMessage(`Fallback badges API failed: ${fallbackError.message}`);
+          } catch (fallbackError) {
+            const typedFallbackError = fallbackError as Error;
+            addDebugMessage(`Fallback badges API failed: ${typedFallbackError.message}`);
           }
         }
         
@@ -423,10 +447,11 @@ const LeetCodeSection = () => {
         setLoading(false);
         setError(false);
         setIsUsingCachedData(false);
-      } catch (error: any) {
+      } catch (error) {
+        const typedError = error as Error;
         console.error("Error fetching data:", error);
-        setErrorDetails(error.message || "Unknown error");
-        addDebugMessage(`General fetch error: ${error.message}`);
+        setErrorDetails(typedError.message || "Unknown error");
+        addDebugMessage(`General fetch error: ${typedError.message}`);
         
         // If we have cached data, use it even though the fetch failed
         if (cachedStats) {
@@ -500,13 +525,8 @@ const LeetCodeSection = () => {
     totalMedium = 1,
     hardSolved = 0,
     totalHard = 1,
-    ranking = "N/A",
-    contributionPoints = 0,
-    totalSubmissions = 0,
-    totalActiveDays = 0,
-    maxStreak = 0,
-    currentStreak = 0,
     acceptanceRate = "N/A",
+    totalSubmissions = 0,
     lastUpdated = Date.now(),
   } = leetcodeData || {};
 
@@ -647,9 +667,6 @@ const LeetCodeSection = () => {
                     })}
                   />
                   <div className="text-center mt-4 text-gray-300 text-base">/{totalQuestions}</div>
-                  {/* <div className="text-center text-green-500 flex items-center justify-center gap-1 mt-1">
-                    <span className="text-green-500">✓</span> Solved
-                  </div> */}
                   <div className="text-center text-gray-400 text-lg mt-1">3 Attempting</div>
                 </div>
               )}
@@ -724,9 +741,11 @@ const LeetCodeSection = () => {
             className="relative group cursor-pointer" 
             onClick={() => window.open(`https://leetcode.com/medal/?showImg=0&id=${badge.id}&isLevel=false`, '_blank')}
           >
-            <img
+            <Image
               src={badge.icon}
               alt={badge.displayName || badge.name || "Badge"}
+              height={120}
+              width={120}
               className="w-30 h-30 rounded-md border border-gray-600 group-hover:border-yellow-400 transition-all"
               onError={(e) => handleImageError(e, badge)}
               loading="lazy" // Add lazy loading for better performance
@@ -742,9 +761,11 @@ const LeetCodeSection = () => {
     ) : (
       <div className="text-center p-4 w-full">
         <div className="bg-gray-700 rounded-md p-8 flex flex-col items-center">
-          <img
+          <Image
             src="https://via.placeholder.com/96"
             alt="No Badge"
+            height={96}
+              width={96}
             className="w-24 h-24 rounded-md border border-gray-600 mb-3"
           />
           <p className="text-gray-400">No badges available</p>
