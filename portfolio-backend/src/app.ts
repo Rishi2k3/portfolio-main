@@ -9,10 +9,8 @@ const app = express();
 app.use(
     cors({
         origin: [
-            'https://rishiaga2k3.com',
-            'https://rishi2k3.com',
-            'https://www.rishi2k3.com',
             'http://localhost:3010',
+            'https://portfolio-main-vhta.vercel.app'
         ], // Allow only your frontend domain
         credentials: true, // Allow credentials if needed
     })
