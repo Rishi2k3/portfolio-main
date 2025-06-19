@@ -14,42 +14,36 @@ const Skills: React.FC = () => {
     const categories: Categories = {
         language: [
             { name: 'JavaScript' },
-            { name: 'TypeScript' },
             { name: 'Python' },
-            { name: 'C' },
             { name: 'C++' },
             { name: 'Java' },
             { name: 'SQL' },
         ],
-        frontend: [
+        Frontend: [
             { name: 'React.js' },
             { name: 'Next.js' },
             { name: 'Redux' },
             { name: 'Tailwind CSS' },
             { name: 'Material UI' },
         ],
-        backend: [
+        Backend: [
             { name: 'Node.js' },
             { name: 'Express.js' },
             { name: 'Flask' },
             { name: 'REST APIs' },
             { name: 'GraphQL' },
-            { name: 'Authentication' },
-            { name: 'Authorization' },
         ],
-        database: [
+        Database: [
             { name: 'MySQL' },
             { name: 'PostgreSQL' },
             { name: 'MongoDB' },
             { name: 'Firebase' },
         ],
-        data_ml: [
+        ML: [
             { name: 'NumPy' },
             { name: 'Pandas' },
             { name: 'Scikit-learn' },
             { name: 'TensorFlow' },
-            { name: 'Data Visualization' },
-            { name: 'Statistical Analysis' },
         ],
         blockchain: [
             { name: 'Ethereum' },
@@ -57,16 +51,11 @@ const Skills: React.FC = () => {
             { name: 'Hardhat' },
             { name: 'Ethers.js' },
             { name: 'Smart Contracts' },
-            { name: 'Web3 Integration' },
         ],
         tools: [
-            { name: 'VS Code' },
-            { name: 'Webstorm' },
-            { name: 'Postman' },
             { name: 'Git' },
             { name: 'GitHub' },
         ],
-        others: [{ name: 'Linux' }],
     };
 
     return (
