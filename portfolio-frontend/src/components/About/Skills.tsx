@@ -1,59 +1,72 @@
 'use client';
 
-import { motion } from 'motion/react'; // Keep the motion import as it is
-import TablerBrandRedux from '@/assets/icons/TablerBrandRedux';
-import NoniconsReact16 from '@/assets/icons/NoniconsReact16';
-import PhFileJsBold from '@/assets/icons/PhFileJsBold';
-import TeenyiconsTailwindSolid from '@/assets/icons/TeenyiconsTailwindSolid';
-import NoniconsNode16 from '@/assets/icons/NoniconsNode16';
-import SimpleIconsExpress from '@/assets/icons/SimpleIconsExpress';
-import TablerBrandNextjs from '@/assets/icons/TablerBrandNextjs';
-import SimpleIconsMongodb from '@/assets/icons/SimpleIconsMongodb';
-import SimpleIconsMongoose from '@/assets/icons/SimpleIconsMongoose';
-import UiwLinux from '@/assets/icons/UiwLinux';
-import LogosJwtIcon from '@/assets/icons/LogosJwtIcon';
-import MingcuteVscodeFill from '@/assets/icons/MingcuteVscodeFill';
-import DeviconPlainWebstorm from '@/assets/icons/DeviconPlainWebstorm';
-import DeviconPlainPostman from '@/assets/icons/DeviconPlainPostman';
-import TeenyiconsGitSolid from '@/assets/icons/TeenyiconsGitSolid';
-import HugeiconsGithub from '@/assets/icons/HugeiconsGithub';
+import { motion } from 'motion/react';
 
-// Define the type for a skill
 interface Skill {
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Type for the icon component
-    name: string; // Name of the skill
+    name: string;
 }
 
-// Define the type for the categories object
 interface Categories {
-    [key: string]: Skill[]; // Each category is a key with an array of Skill objects
+    [key: string]: Skill[];
 }
 
 const Skills: React.FC = () => {
-    // Define the categories object
     const categories: Categories = {
-        language: [{ icon: PhFileJsBold, name: 'Javascript' }],
+        language: [
+            { name: 'JavaScript' },
+            { name: 'TypeScript' },
+            { name: 'Python' },
+            { name: 'C' },
+            { name: 'C++' },
+            { name: 'Java' },
+            { name: 'SQL' },
+        ],
         frontend: [
-            { icon: NoniconsReact16, name: 'React Js' },
-            { icon: TablerBrandRedux, name: 'Redux' },
-            { icon: TablerBrandNextjs, name: 'Next js' },
-            { icon: TeenyiconsTailwindSolid, name: 'Tailwind Css' },
+            { name: 'React.js' },
+            { name: 'Next.js' },
+            { name: 'Redux' },
+            { name: 'Tailwind CSS' },
+            { name: 'Material UI' },
         ],
         backend: [
-            { icon: NoniconsNode16, name: 'Node Js' },
-            { icon: SimpleIconsExpress, name: 'Express Js' },
-            { icon: SimpleIconsMongodb, name: 'MongoDb' },
-            { icon: SimpleIconsMongoose, name: 'Mongoose' },
-            { icon: LogosJwtIcon, name: 'Jwt' },
+            { name: 'Node.js' },
+            { name: 'Express.js' },
+            { name: 'Flask' },
+            { name: 'REST APIs' },
+            { name: 'GraphQL' },
+            { name: 'Authentication' },
+            { name: 'Authorization' },
+        ],
+        database: [
+            { name: 'MySQL' },
+            { name: 'PostgreSQL' },
+            { name: 'MongoDB' },
+            { name: 'Firebase' },
+        ],
+        data_ml: [
+            { name: 'NumPy' },
+            { name: 'Pandas' },
+            { name: 'Scikit-learn' },
+            { name: 'TensorFlow' },
+            { name: 'Data Visualization' },
+            { name: 'Statistical Analysis' },
+        ],
+        blockchain: [
+            { name: 'Ethereum' },
+            { name: 'Solidity' },
+            { name: 'Hardhat' },
+            { name: 'Ethers.js' },
+            { name: 'Smart Contracts' },
+            { name: 'Web3 Integration' },
         ],
         tools: [
-            { icon: MingcuteVscodeFill, name: 'Vs code' },
-            { icon: DeviconPlainWebstorm, name: 'Webstorm' },
-            { icon: DeviconPlainPostman, name: 'Postman' },
-            { icon: TeenyiconsGitSolid, name: 'Git' },
-            { icon: HugeiconsGithub, name: 'Github' },
+            { name: 'VS Code' },
+            { name: 'Webstorm' },
+            { name: 'Postman' },
+            { name: 'Git' },
+            { name: 'GitHub' },
         ],
-        others: [{ icon: UiwLinux, name: 'Linux' }],
+        others: [{ name: 'Linux' }],
     };
 
     return (
@@ -75,13 +88,12 @@ const Skills: React.FC = () => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{
                                     duration: 0.4,
-                                    delay: index * 0.1, // Cascading effect
+                                    delay: index * 0.1,
                                     ease: 'easeOut',
                                 }}
                                 viewport={{ once: true }}
-                                className="bg-secondary text-secondary-foreground text-2xl py-2 px-3 font-bold flex gap-2 items-center justify-center border border-border rounded-lg hover:bg-secondary/90 hover:shadow-lg"
+                                className="bg-secondary text-secondary-foreground text-xl py-2 px-4 font-semibold border border-border rounded-lg hover:bg-secondary/90 hover:shadow-md"
                             >
-                                <skill.icon />
                                 {skill.name}
                             </motion.div>
                         ))}
