@@ -9,10 +9,10 @@ const SkillSection: React.FC = () => {
             <div className="text-center w-4/6 mx-auto max-tablet-lg:w-full max-mobile-lg:px-4">
                 <h1 className="max-mobile-lg:text-2xl">What I Know</h1>
                 <p className="max-mobile-lg:text-sm max-mobile-xs:text-xs">
-                    I specialize in building modern, scalable, and user-friendly web applications.
-                    My expertise spans across frontend and backend development, with a strong focus
-                    on technologies like React, Node.js, and MongoDB. I am passionate about solving
-                    complex problems and delivering high-quality solutions.
+                    I specialize in full-stack development with expertise in modern web technologies, 
+                    data science, and blockchain development. My skills span across programming languages, 
+                    frontend and backend frameworks, databases, machine learning tools, and smart contract development. 
+                    I am passionate about building scalable, innovative solutions that solve real-world problems.
                 </p>
             </div>
             <div className="flex max-mobile-lg:flex-col">

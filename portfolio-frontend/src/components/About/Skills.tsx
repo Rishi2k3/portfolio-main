@@ -30,30 +30,57 @@ interface Categories {
 }
 
 const Skills: React.FC = () => {
-    // Define the categories object
+    // Define the categories object with comprehensive skills
     const categories: Categories = {
-        language: [{ icon: PhFileJsBold, name: 'Javascript' }],
+        programming: [
+            { icon: PhFileJsBold, name: 'JavaScript' },
+            { icon: PhFileJsBold, name: 'Python' },
+            { icon: PhFileJsBold, name: 'C' },
+            { icon: PhFileJsBold, name: 'C++' },
+            { icon: PhFileJsBold, name: 'Java' },
+            { icon: PhFileJsBold, name: 'TypeScript' },
+            { icon: PhFileJsBold, name: 'SQL' },
+        ],
         frontend: [
-            { icon: NoniconsReact16, name: 'React Js' },
-            { icon: TablerBrandRedux, name: 'Redux' },
-            { icon: TablerBrandNextjs, name: 'Next js' },
-            { icon: TeenyiconsTailwindSolid, name: 'Tailwind Css' },
+            { icon: NoniconsReact16, name: 'React.js' },
+            { icon: TablerBrandNextjs, name: 'Next.js' },
+            { icon: TeenyiconsTailwindSolid, name: 'Tailwind CSS' },
+            { icon: TablerBrandRedux, name: 'Material UI' },
         ],
         backend: [
-            { icon: NoniconsNode16, name: 'Node Js' },
-            { icon: SimpleIconsExpress, name: 'Express Js' },
-            { icon: SimpleIconsMongodb, name: 'MongoDb' },
-            { icon: SimpleIconsMongoose, name: 'Mongoose' },
-            { icon: LogosJwtIcon, name: 'Jwt' },
+            { icon: NoniconsNode16, name: 'Node.js' },
+            { icon: SimpleIconsExpress, name: 'Express.js' },
+            { icon: PhFileJsBold, name: 'Flask' },
+            { icon: LogosJwtIcon, name: 'REST APIs' },
+            { icon: LogosJwtIcon, name: 'GraphQL' },
+        ],
+        dataML: [
+            { icon: PhFileJsBold, name: 'NumPy' },
+            { icon: PhFileJsBold, name: 'Pandas' },
+            { icon: PhFileJsBold, name: 'Scikit-learn' },
+            { icon: PhFileJsBold, name: 'TensorFlow' },
+        ],
+        databases: [
+            { icon: SimpleIconsMongodb, name: 'MySQL' },
+            { icon: SimpleIconsMongodb, name: 'PostgreSQL' },
+            { icon: SimpleIconsMongodb, name: 'MongoDB' },
+            { icon: SimpleIconsMongodb, name: 'Firebase' },
+        ],
+        blockchain: [
+            { icon: PhFileJsBold, name: 'Ethereum' },
+            { icon: PhFileJsBold, name: 'Solidity' },
+            { icon: PhFileJsBold, name: 'Hardhat' },
+            { icon: PhFileJsBold, name: 'Ethers.js' },
+            { icon: PhFileJsBold, name: 'Smart Contracts' },
         ],
         tools: [
-            { icon: MingcuteVscodeFill, name: 'Vs code' },
-            { icon: DeviconPlainWebstorm, name: 'Webstorm' },
+            { icon: MingcuteVscodeFill, name: 'VS Code' },
+            { icon: DeviconPlainWebstorm, name: 'WebStorm' },
             { icon: DeviconPlainPostman, name: 'Postman' },
             { icon: TeenyiconsGitSolid, name: 'Git' },
-            { icon: HugeiconsGithub, name: 'Github' },
+            { icon: HugeiconsGithub, name: 'GitHub' },
+            { icon: UiwLinux, name: 'Linux' },
         ],
-        others: [{ icon: UiwLinux, name: 'Linux' }],
     };
 
     return (
@@ -66,7 +93,9 @@ const Skills: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl font-semibold mb-3 capitalize max-mobile-lg:text-2xl max-mobile-xs:text-xl">{category}</h2>
+                    <h2 className="text-3xl font-semibold mb-3 capitalize max-mobile-lg:text-2xl max-mobile-xs:text-xl">
+                        {category === 'dataML' ? 'Data & ML' : category}
+                    </h2>
                     <div className="flex flex-wrap justify-start items-center gap-5 max-mobile-lg:gap-3 max-mobile-xs:gap-2">
                         {skills.map((skill, index) => (
                             <motion.div
