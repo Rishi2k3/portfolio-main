@@ -7,7 +7,7 @@ import * as motion from 'motion/react-client';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const aboutText = `
-    Hi, I'm Rishi Agarwal, a passionate and detail-oriented full-stack developer specializing in the MERN stack, Next.js, and cloud technologies. With expertise in React, Redux, Node.js, Express, and MongoDB, I build dynamic, scalable, and responsive web applications. My skill set includes modern front-end frameworks like Tailwind CSS, JavaScript, and UI/UX tools like Figma. I also have experience with DevOps, CI/CD, and cloud platforms such as AWS, Azure, and GCP. As a tutor at Lessonpal, I teach programming, data structures, and computer science concepts to students worldwide, strengthening my problem-solving and mentoring skills. Committed to writing clean, efficient code, I thrive on solving complex challenges. Let's build something amazing together!
+    Hi, I'm Rishi Agarwal, a passionate and detail-oriented full-stack developer specializing in the MERN stack, Next.js, and cloud technologies. With expertise in React, Redux, Node.js, Express, and MongoDB, I build dynamic, scalable, and responsive web applications. My skill set includes modern front-end frameworks like Tailwind CSS, JavaScript, and UI/UX tools like Figma. I also have experience with DevOps, CI/CD, and cloud platforms such as AWS, Azure, and GCP. As a tutor at Lessonpal, I teach programming, data structures, and computer science concepts to students worldwide, strengthening my problem-solving and mentoring skills. Committed to writing clean, efficient code, I thrive on solving complex challenges. Let&apos;s build something amazing together!
 `;
 
 const AboutSection = () => {
