@@ -77,11 +77,11 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
         <motion.div 
             ref={cardRef} 
             className="sticky w-full top-20 h-screen max-mobile-lg:relative max-mobile-lg:top-auto max-mobile-lg:h-auto max-mobile-lg:sticky-none" 
-            style={{ translateY: window.innerWidth > 1024 ? translateY : 0 }}
+            style={{ translateY: typeof window !== 'undefined' && window.innerWidth > 1024 ? translateY : 0 }}
         >
             <motion.div
                 className={`w-full max-tablet-lg:min-h-[50vh] max-mobile-lg:min-h-auto rounded-2xl overflow-hidden bg-card relative shadow-lg hover:shadow-[0px_5px_20px] hover:shadow-muted border border-border ${project.color} origin-top z-10`}
-                style={{ scale: window.innerWidth > 1024 ? scale : 1 }}
+                style={{ scale: typeof window !== 'undefined' && window.innerWidth > 1024 ? scale : 1 }}
             >
                 <div className="flex max-mobile-lg:flex-col justify-between w-full relative z-20">
                     {/* Image Section */}

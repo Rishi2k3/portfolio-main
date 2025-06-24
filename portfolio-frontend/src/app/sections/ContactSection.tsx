@@ -16,7 +16,10 @@ const ContactSection: React.FC = () => {
             <div className="text-center py-10 mobile-lg:w-9/12 mx-auto max-mobile-lg:py-6 max-mobile-lg:px-4">
                 <h1 className="max-mobile-lg:text-2xl">Contact</h1>
                 <p className="max-mobile-lg:text-sm max-mobile-xs:text-xs">
-                Whether you have a project in mind, need a consultation, tutoring services, a job opportunity, or simply want to connect, feel free to reach out. Let's create something amazing together!
+                Whether you have a project in mind, need a consultation, tutoring services, a job opportunity, or simply want to connect, feel free to reach out. Let&apos;s create something amazing together!
+                </p>
+                <p className="text-muted-foreground text-lg max-mobile-lg:text-base">
+                    I&apos;m always open to discussing new opportunities, interesting projects, or just having a chat about technology.
                 </p>
             </div>
             <div className="flex gap-4 max-tablet-lg:flex-col max-mobile-lg:gap-6">

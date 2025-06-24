@@ -84,7 +84,7 @@ export default function WorkExperienceSection() {
                     Work Experience
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    My professional journey in software development, showcasing the companies I've worked with and the impact I've made.
+                    My professional journey in software development, showcasing the companies I&apos;ve worked with and the impact I&apos;ve made.
                 </p>
             </motion.div>
 
@@ -172,14 +172,14 @@ export default function WorkExperienceSection() {
                 viewport={{ once: true }}
                 className="text-center mt-12"
             >
-                <p className="text-muted-foreground text-lg">
-                    Looking for new opportunities to grow and contribute to innovative projects.
+                <p className="text-muted-foreground text-base max-mobile-lg:text-sm">
+                    I&apos;m passionate about creating innovative solutions and continuously learning new technologies to deliver exceptional user experiences.
                 </p>
                 <a 
                     href="#contact" 
                     className="inline-block mt-4 px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
                 >
-                    Let's Connect
+                    Let&apos;s Connect
                 </a>
             </motion.div>
         </section>

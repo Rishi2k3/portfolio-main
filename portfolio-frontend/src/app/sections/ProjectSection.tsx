@@ -6,7 +6,6 @@ import projectImage from '@/assets/images/projects/1.png';
 import projectImage2 from '@/assets/images/projects/2.png';
 import projectImage3 from '@/assets/images/projects/3.png';
 import projectImage4 from '@/assets/images/projects/4.png';
-import checkImage from '@/assets/images/projects/check.png';
 // import projectImage5 from '@/assets/images/projects/5.png';
 import { StaticImageData } from 'next/image'; // Correct type for static images
 
