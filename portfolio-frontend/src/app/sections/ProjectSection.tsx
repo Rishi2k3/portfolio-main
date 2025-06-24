@@ -5,7 +5,8 @@ import linux from '@/assets/icons/skill/skill-icons--linux-light.svg';
 import projectImage from '@/assets/images/projects/1.png';
 import projectImage2 from '@/assets/images/projects/2.png';
 import projectImage3 from '@/assets/images/projects/3.png';
-// import projectImage4 from '@/assets/images/projects/4.png';
+import projectImage4 from '@/assets/images/projects/4.png';
+import checkImage from '@/assets/images/projects/check.png';
 // import projectImage5 from '@/assets/images/projects/5.png';
 import { StaticImageData } from 'next/image'; // Correct type for static images
 
@@ -39,6 +40,18 @@ const projects: Project[] = [
     },
     {
         id: 2,
+        title: 'Premium Payment Prediction System',
+        description: 'Machine learning web app using Random Forest, achieving 89%+ accuracy on 79,000+ insurance records to predict premium payment defaults. Deployed a scalable Flask API for real-time predictions.',
+        image: projectImage4,
+        color: 'bg-card',
+        logo: linux,
+        techUsed: ['Machine Learning', 'Random Forest', 'Flask', 'Pandas', 'NumPy', 'SMOTE', 'Data Science'],
+        demoLink: 'https://drive.google.com/file/d/1RJKVOEVpmULUSJJ6msfTo58P7VipCTA2/view?usp=share_link',
+        codeLink: 'https://payment-prediction-app.onrender.com/',
+        Github: '',
+    },
+    {
+        id: 3,
         title: 'Zeeflix - Movie website',
         description: " Zeeflix is a platform where you can search details about any movie. It Highlights the use of DOM manipulation, while using the Movie list API."
             ,
@@ -51,7 +64,7 @@ const projects: Project[] = [
         Github:"",
     },
     {
-        id: 3,
+        id: 4,
         title: 'Razorpay - Power your finance',
         description:'It is a fully responsive Razorpay clone using HTML, Tailwind CSS, and JavaScript,Recreated core UI elements, layout, and design to closely mirror the original website.Ensured mobile-first responsiveness for seamless performance across different screen sizes',
         image: projectImage3,
@@ -107,10 +120,10 @@ const ProjectSection: React.FC = () => {
     return (
         <div className="relative">
             {/* Main Section */}
-            <Section className={'py-10 relative'}>
-                <div className="flex flex-col justify-center text-center py-10 w-2/3 mx-auto max-mobile-lg:w-full z-10">
-                    <h1>Projects</h1>
-                    <p>
+            <Section className={'py-10 relative max-mobile-lg:py-6'}>
+                <div className="flex flex-col justify-center text-center py-10 w-2/3 mx-auto max-mobile-lg:w-full max-mobile-lg:px-4 z-10">
+                    <h1 className="max-mobile-lg:text-2xl">Projects</h1>
+                    <p className="max-mobile-lg:text-sm max-mobile-xs:text-xs">
                         Explore a collection of my projects that showcase my skills in web
                         development, problem-solving, and creating user-friendly applications. Each
                         project is built with modern technologies and designed to deliver a seamless

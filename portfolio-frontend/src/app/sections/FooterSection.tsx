@@ -6,9 +6,11 @@ const FooterSection: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <Section className={'border-t border-border'}>
+        <Section className={'border-t border-border py-6 max-mobile-lg:py-4'}>
             <div className="text-center">
-                <p>Made by Rishi Agarwal @ All rights reserved | {currentYear}</p>
+                <p className="text-muted-foreground max-mobile-lg:text-sm max-mobile-xs:text-xs">
+                    Made by Rishi Agarwal @ All rights reserved | {currentYear}
+                </p>
             </div>
         </Section>
     );

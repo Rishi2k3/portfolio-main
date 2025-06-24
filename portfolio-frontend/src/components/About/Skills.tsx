@@ -57,7 +57,7 @@ const Skills: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col gap-6 p-4">
+        <div className="flex flex-col gap-6 p-4 max-mobile-lg:gap-4 max-mobile-lg:p-2">
             {Object.entries(categories).map(([category, skills]) => (
                 <motion.div
                     key={category}
@@ -66,8 +66,8 @@ const Skills: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-3xl font-semibold mb-3 capitalize">{category}</h2>
-                    <div className="flex flex-wrap justify-start items-center gap-5">
+                    <h2 className="text-3xl font-semibold mb-3 capitalize max-mobile-lg:text-2xl max-mobile-xs:text-xl">{category}</h2>
+                    <div className="flex flex-wrap justify-start items-center gap-5 max-mobile-lg:gap-3 max-mobile-xs:gap-2">
                         {skills.map((skill, index) => (
                             <motion.div
                                 key={skill.name}
@@ -79,10 +79,10 @@ const Skills: React.FC = () => {
                                     ease: 'easeOut',
                                 }}
                                 viewport={{ once: true }}
-                                className="bg-secondary text-secondary-foreground text-2xl py-2 px-3 font-bold flex gap-2 items-center justify-center border border-border rounded-lg hover:bg-secondary/90 hover:shadow-lg"
+                                className="bg-secondary text-secondary-foreground text-2xl py-2 px-3 font-bold flex gap-2 items-center justify-center border border-border rounded-lg hover:bg-secondary/90 hover:shadow-lg max-mobile-lg:text-lg max-mobile-lg:py-1.5 max-mobile-lg:px-2 max-mobile-xs:text-sm max-mobile-xs:py-1 max-mobile-xs:px-1.5"
                             >
-                                <skill.icon />
-                                {skill.name}
+                                <skill.icon className="max-mobile-lg:w-5 max-mobile-lg:h-5 max-mobile-xs:w-4 max-mobile-xs:h-4" />
+                                <span className="max-mobile-xs:hidden">{skill.name}</span>
                             </motion.div>
                         ))}
                     </div>

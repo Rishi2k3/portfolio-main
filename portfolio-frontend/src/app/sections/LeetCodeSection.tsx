@@ -571,27 +571,27 @@ const LeetCodeSection = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 text-white rounded-xl shadow-lg max-w-4xl mx-auto">
+    <div className="p-6 bg-card text-foreground rounded-xl shadow-lg max-w-4xl mx-auto max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
       {/* Header with refresh button and last updated info */}
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center">
-          <h2 className="text-2xl font-bold">LeetCode Stats</h2>
+      <div className="flex justify-between items-center mb-4 max-mobile-lg:flex-col max-mobile-lg:gap-3 max-mobile-lg:items-start">
+        <div className="flex items-center max-mobile-lg:flex-col max-mobile-lg:items-start max-mobile-lg:gap-2">
+          <h2 className="text-2xl font-bold max-mobile-lg:text-xl text-primary">LeetCode Stats</h2>
           {lastUpdated && (
-            <span className="text-sm text-gray-400 ml-3">
+            <span className="text-sm text-muted-foreground ml-3 max-mobile-lg:ml-0 max-mobile-lg:text-xs">
               Last updated: {new Date(lastUpdated).toLocaleString()}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 max-mobile-lg:gap-2">
           <button 
             onClick={toggleDebug} 
-            className="text-xs text-gray-500 hover:text-gray-300"
+            className="text-xs text-muted-foreground hover:text-primary max-mobile-lg:text-xs"
           >
             {showDebug ? "Hide Debug" : "Show Debug"}
           </button>
           <button 
             onClick={refreshData}
-            className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
+            className="px-3 py-1 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-colors max-mobile-lg:px-2 max-mobile-lg:py-1 max-mobile-lg:text-xs"
             disabled={loading}
           >
             {loading ? "Refreshing..." : "Refresh Data"}
@@ -601,9 +601,9 @@ const LeetCodeSection = () => {
       
       {/* Error notification with more details */}
       {error && (
-        <div className="bg-red-900/50 border border-red-600 text-white p-3 rounded mb-4">
-          <p className="font-semibold">Notice: Using {isUsingCachedData ? 'cached' : 'fallback'} data</p>
-          <p className="text-sm">
+        <div className="bg-destructive/10 border border-destructive text-destructive-foreground p-3 rounded mb-4 max-mobile-lg:p-2">
+          <p className="font-semibold max-mobile-lg:text-sm">Notice: Using {isUsingCachedData ? 'cached' : 'fallback'} data</p>
+          <p className="text-sm max-mobile-lg:text-xs">
             We encountered an error fetching the latest data: {errorDetails}. 
             {isUsingCachedData ? ` Showing data from ${new Date(leetcodeData?.lastUpdated || Date.now()).toLocaleString()}.` : ''}
           </p>
@@ -612,11 +612,11 @@ const LeetCodeSection = () => {
       
       {/* Debugging info - only shown when toggled */}
       {showDebug && (
-        <div className="bg-gray-800 p-3 mb-4 rounded text-xs max-h-60 overflow-y-auto">
-          <h3 className="text-sm font-semibold mb-2">Debug Information</h3>
+        <div className="bg-muted p-3 mb-4 rounded text-xs max-h-60 overflow-y-auto max-mobile-lg:p-2">
+          <h3 className="text-sm font-semibold mb-2 text-primary">Debug Information</h3>
           <div className="space-y-1">
             {debugLog.map((message, index) => (
-              <p key={index} className="text-gray-300">{message}</p>
+              <p key={index} className="text-muted-foreground max-mobile-lg:text-xs">{message}</p>
             ))}
             <p>Badge Count: {badges.length}</p>
             <p>Upcoming Badge Count: {upcomingBadges.length}</p>
@@ -628,12 +628,12 @@ const LeetCodeSection = () => {
         </div>
       )}
       
-      <div className="flex flex-col lg:flex-row gap-8 min-h-[500px]">
+      <div className="flex flex-col lg:flex-row gap-8 min-h-[500px] max-mobile-lg:min-h-auto max-mobile-lg:gap-4">
         {/* Left section - Stats */}
-        <div className="flex-1 bg-gray-800 rounded-lg p-6">
-          <div className="flex items-center justify-center mb-22">
+        <div className="flex-1 bg-background rounded-lg p-6 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
+          <div className="flex items-center justify-center mb-22 max-mobile-lg:mb-4">
             <div 
-              className="w-48 h-48 mx-auto relative cursor-pointer"
+              className="w-48 h-48 mx-auto relative cursor-pointer max-mobile-lg:w-32 max-mobile-lg:h-32 max-mobile-sm:w-28 max-mobile-sm:h-28"
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
             >
@@ -643,15 +643,15 @@ const LeetCodeSection = () => {
                     value={parseFloat(acceptanceRate) || 65.4}
                     text={`${acceptanceRate || '65.4'}%`}
                     styles={buildStyles({
-                      textSize: '16px',
-                      textColor: "#fff",
-                      pathColor: "#ffcc00",
-                      trailColor: "#444",
+                      textSize: window.innerWidth < 768 ? '12px' : '16px',
+                      textColor: "var(--primary)",
+                      pathColor: "var(--primary)",
+                      trailColor: "var(--muted)",
                       pathTransition: "ease-in-out 0.3s",
                     })}
                   />
-                  <div className="text-center mt-4 text-gray-300 text-base ">Acceptance</div>
-                  <div className="text-center text-gray-400 text-base">{totalSubmissions} submissions</div>
+                  <div className="text-center mt-4 text-primary text-base max-mobile-lg:text-sm max-mobile-sm:text-xs">Acceptance</div>
+                  <div className="text-center text-muted-foreground text-base max-mobile-lg:text-sm max-mobile-sm:text-xs">{totalSubmissions} submissions</div>
                 </div>
               ) : (
                 <div className="w-full h-full">
@@ -659,143 +659,142 @@ const LeetCodeSection = () => {
                     value={(totalSolved / totalQuestions) * 100}
                     text={`${totalSolved}`}
                     styles={buildStyles({
-                      textSize: '30px',
-                      textColor: "#fff",
+                      textSize: window.innerWidth < 768 ? '20px' : '30px',
+                      textColor: "var(--primary)",
                       pathColor: "url(#gradient)",
-                      trailColor: "#444",
+                      trailColor: "var(--muted)",
                       pathTransition: "ease-in-out 0.3s",
                     })}
                   />
-                  <div className="text-center mt-4 text-gray-300 text-base">/{totalQuestions}</div>
-                  <div className="text-center text-gray-400 text-lg mt-1">3 Attempting</div>
+                  <div className="text-center mt-4 text-primary text-base max-mobile-lg:text-sm max-mobile-sm:text-xs">/{totalQuestions}</div>
+                  <div className="text-center text-muted-foreground text-lg mt-1 max-mobile-lg:text-base max-mobile-sm:text-sm">3 Attempting</div>
                 </div>
               )}
-              
               {/* SVG Gradient for the circular progress */}
               <svg style={{ height: 0 }}>
                 <defs>
                   <linearGradient id="gradient" gradientTransform="rotate(90)">
-                    <stop offset="0%" stopColor="#ffcc00" />
-                    <stop offset="25%" stopColor="#2dd4bf" />
-                    <stop offset="50%" stopColor="#10b981" />
-                    <stop offset="75%" stopColor="#ef4444" />
-                    <stop offset="100%" stopColor="#ef4444" />
+                    <stop offset="0%" stopColor="var(--primary)" />
+                    <stop offset="25%" stopColor="var(--secondary)" />
+                    <stop offset="50%" stopColor="var(--accent)" />
+                    <stop offset="75%" stopColor="var(--destructive)" />
+                    <stop offset="100%" stopColor="var(--destructive)" />
                   </linearGradient>
                 </defs>
               </svg>
             </div>
           </div>
 
-          <div className="flex flex-col space-y-3 mt-8">
-            <div className="bg-gray-700 rounded-md p-3 flex justify-between items-center">
-              <span className="text-teal-400 font-medium">Easy</span>
+          <div className="flex flex-col space-y-3 mt-8 max-mobile-lg:mt-4">
+            <div className="bg-card rounded-md p-3 flex justify-between items-center max-mobile-sm:p-2 border border-border">
+              <span className="text-primary font-medium max-mobile-sm:text-sm">Easy</span>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-24 bg-gray-600 rounded-full overflow-hidden">
+                <div className="h-2 w-24 bg-muted rounded-full overflow-hidden max-mobile-sm:w-16">
                   <div 
-                    className="h-full bg-teal-400 rounded-full" 
+                    className="h-full bg-primary rounded-full" 
                     style={{ width: `${(easySolved / totalEasy) * 100}%` }}
                   ></div>
                 </div>
-                <span>{easySolved}/{totalEasy}</span>
+                <span className="max-mobile-sm:text-sm">{easySolved}/{totalEasy}</span>
               </div>
             </div>
-            <div className="bg-gray-700 rounded-md p-3 flex justify-between items-center">
-              <span className="text-yellow-400 font-medium">Medium</span>
+            <div className="bg-card rounded-md p-3 flex justify-between items-center max-mobile-sm:p-2 border border-border">
+              <span className="text-secondary font-medium max-mobile-sm:text-sm">Medium</span>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-24 bg-gray-600 rounded-full overflow-hidden">
+                <div className="h-2 w-24 bg-muted rounded-full overflow-hidden max-mobile-sm:w-16">
                   <div 
-                    className="h-full bg-yellow-400 rounded-full" 
+                    className="h-full bg-secondary rounded-full" 
                     style={{ width: `${(mediumSolved / totalMedium) * 100}%` }}
                   ></div>
                 </div>
-                <span>{mediumSolved}/{totalMedium}</span>
+                <span className="max-mobile-sm:text-sm">{mediumSolved}/{totalMedium}</span>
               </div>
             </div>
-            <div className="bg-gray-700 rounded-md p-3 flex justify-between items-center">
-              <span className="text-red-400 font-medium">Hard</span>
+            <div className="bg-card rounded-md p-3 flex justify-between items-center max-mobile-sm:p-2 border border-border">
+              <span className="text-destructive font-medium max-mobile-sm:text-sm">Hard</span>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-24 bg-gray-600 rounded-full overflow-hidden">
+                <div className="h-2 w-24 bg-muted rounded-full overflow-hidden max-mobile-sm:w-16">
                   <div 
-                    className="h-full bg-red-400 rounded-full" 
+                    className="h-full bg-destructive rounded-full" 
                     style={{ width: `${(hardSolved / totalHard) * 100}%` }}
                   ></div>
                 </div>
-                <span>{hardSolved}/{totalHard}</span>
+                <span className="max-mobile-sm:text-sm">{hardSolved}/{totalHard}</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Right section - Badges */}
-<div className="flex-1 bg-gray-800 rounded-lg p-6">
-  <div className="flex justify-between items-center mb-6">
-    <div className="text-3xl font-bold">Badges</div>
-    <div className="text-3xl font-bold">{badges.length}</div>
-  </div>
-            
-  <div className="flex flex-wrap justify-center md:justify-start gap-8 mb-8 ">
-    {badges.length > 0 ? (
-      badges.map((badge, index) => (
-        <Tooltip key={index} title={badge.displayName || badge.name || "Badge"} arrow>
-          <div 
-            className="relative group cursor-pointer" 
-            onClick={() => window.open(`https://leetcode.com/medal/?showImg=0&id=${badge.id}&isLevel=false`, '_blank')}
-          >
-            <Image
-              src={badge.icon}
-              alt={badge.displayName || badge.name || "Badge"}
-              height={120}
-              width={120}
-              className="w-30 h-30 rounded-md border border-gray-600 group-hover:border-yellow-400 transition-all"
-              onError={(e) => handleImageError(e, badge)}
-              loading="lazy" // Add lazy loading for better performance
-            />
-            <div className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-black bg-opacity-70 rounded-md flex items-center justify-center transition-opacity duration-200 p-2">
-              <span className="text-xs text-center text-white">
-                {badge.displayName || badge.name || "Badge"}
-              </span>
-            </div>
+        <div className="flex-1 bg-background rounded-lg p-6 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
+          <div className="flex justify-between items-center mb-6 max-mobile-lg:mb-4">
+            <div className="text-3xl font-bold max-mobile-lg:text-2xl max-mobile-sm:text-xl text-primary">Badges</div>
+            <div className="text-3xl font-bold max-mobile-lg:text-2xl max-mobile-sm:text-xl text-primary">{badges.length}</div>
           </div>
-        </Tooltip>
-      ))
-    ) : (
-      <div className="text-center p-4 w-full">
-        <div className="bg-gray-700 rounded-md p-8 flex flex-col items-center">
-          <Image
-            src="https://via.placeholder.com/96"
-            alt="No Badge"
-            height={96}
-              width={96}
-            className="w-24 h-24 rounded-md border border-gray-600 mb-3"
-          />
-          <p className="text-gray-400">No badges available</p>
+                  
+          <div className="flex flex-wrap justify-center md:justify-start gap-8 mb-8 max-mobile-lg:gap-4 max-mobile-sm:gap-3">
+            {badges.length > 0 ? (
+              badges.map((badge, index) => (
+                <Tooltip key={index} title={badge.displayName || badge.name || "Badge"} arrow>
+                  <div 
+                    className="relative group cursor-pointer" 
+                    onClick={() => window.open(`https://leetcode.com/medal/?showImg=0&id=${badge.id}&isLevel=false`, '_blank')}
+                  >
+                    <Image
+                      src={badge.icon}
+                      alt={badge.displayName || badge.name || "Badge"}
+                      height={120}
+                      width={120}
+                      className="w-30 h-30 rounded-md border border-border group-hover:border-primary transition-all max-mobile-lg:w-20 max-mobile-lg:h-20 max-mobile-sm:w-16 max-mobile-sm:h-16"
+                      onError={(e) => handleImageError(e, badge)}
+                      loading="lazy"
+                    />
+                    <div className="opacity-0 group-hover:opacity-100 absolute inset-0 bg-primary/80 rounded-md flex items-center justify-center transition-opacity duration-200 p-2">
+                      <span className="text-xs text-center text-primary-foreground max-mobile-sm:text-xs">
+                        {badge.displayName || badge.name || "Badge"}
+                      </span>
+                    </div>
+                  </div>
+                </Tooltip>
+              ))
+            ) : (
+              <div className="text-center p-4 w-full">
+                <div className="bg-muted rounded-md p-8 flex flex-col items-center max-mobile-lg:p-4">
+                  <Image
+                    src="https://via.placeholder.com/96"
+                    alt="No Badge"
+                    height={96}
+                    width={96}
+                    className="w-24 h-24 rounded-md border border-border mb-3 max-mobile-lg:w-16 max-mobile-lg:h-16"
+                  />
+                  <p className="text-muted-foreground max-mobile-lg:text-sm">No badges available</p>
+                </div>
+              </div>
+            )}
+          </div>
+                  
+          <div className="mt-6 max-mobile-lg:mt-4">
+            <div className="text-muted-foreground text-lg max-mobile-lg:text-base max-mobile-sm:text-sm">Most Recent Badge</div>
+            <div className="text-2xl font-semibold mt-1 max-mobile-lg:text-xl max-mobile-sm:text-lg text-primary">
+              {badges.length > 0 ? (badges[0].displayName || badges[0].name || "No Badge") : "No Badge"}
+            </div>
+            {badges.length > 0 && badges[0].creationDate && (
+              <div className="text-lg mt-1 text-muted-foreground max-mobile-lg:text-base max-mobile-sm:text-sm">
+                Earned {new Date(badges[0].creationDate).toLocaleDateString()}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-    )}
-  </div>
-            
-  <div className="mt-6">
-    <div className="text-gray-400 text-lg ">Most Recent Badge</div>
-    <div className="text-2xl font-semibold mt-1">
-      {badges.length > 0 ? (badges[0].displayName || badges[0].name || "No Badge") : "No Badge"}
-    </div>
-    {badges.length > 0 && badges[0].creationDate && (
-      <div className="text-lg mt-1 text-gray-400">
-        Earned {new Date(badges[0].creationDate).toLocaleDateString()}
-      </div>
-    )}
-  </div>
-</div>
       </div>
 
       {/* Activity Calendar */}
-      <div className="mt-8 bg-gray-800 rounded-lg p-6">
-        <h3 className="text-xl font-medium mb-4">Activity Calendar</h3>
-        <div className="flex overflow-x-auto pb-2">
+      <div className="mt-8 rounded-lg p-6 max-mobile-lg:mt-4 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border bg-[linear-gradient(135deg,theme(colors.card)_25%,theme(colors.background)_25%,theme(colors.background)_50%,theme(colors.card)_50%,theme(colors.card)_75%,theme(colors.background)_75%,theme(colors.background)_100%)] bg-[length:32px_32px]">
+        <h3 className="text-xl font-medium mb-4 max-mobile-lg:text-lg max-mobile-sm:text-base text-primary">Activity Calendar</h3>
+        <div className="flex overflow-x-auto pb-2 max-mobile-lg:pb-1">
           {renderActivityGrid()}
         </div>
       </div>
-    </div> 
+    </div>
   );
 };
 

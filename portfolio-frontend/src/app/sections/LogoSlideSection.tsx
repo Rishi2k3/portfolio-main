@@ -35,7 +35,7 @@ const logos = [
 const LogoSlideSection: React.FC = () => {
     return (
         <Section className="bg-accent border-y border-border p-0 relative">
-            <div className="relative w-full overflow-hidden py-4">
+            <div className="relative w-full overflow-hidden py-4 max-mobile-lg:py-2">
                 {/* Left Gradient */}
                 <div className="absolute left-0 top-0 h-full w-[10%] bg-gradient-to-r from-accent via-accent/80 to-transparent z-10 pointer-events-none" />
 
@@ -43,9 +43,9 @@ const LogoSlideSection: React.FC = () => {
                 <div className="absolute right-0 top-0 h-full w-[10%] bg-gradient-to-l from-accent via-accent/80 to-transparent z-10 pointer-events-none" />
 
                 {/* Logos */}
-                <div className="flex gap-8 items-center animate-scroll">
+                <div className="flex gap-8 items-center animate-scroll max-mobile-lg:gap-4">
                     {[...logos, ...logos].map((logo, index) => (
-                        <div key={index} className="w-16 h-16 flex-shrink-0 mx-6">
+                        <div key={index} className="w-16 h-16 flex-shrink-0 mx-6 max-mobile-lg:w-12 max-mobile-lg:h-12 max-mobile-lg:mx-3 max-mobile-sm:w-10 max-mobile-sm:h-10 max-mobile-sm:mx-2">
                             <Image
                                 src={logo}
                                 alt="Logo"
@@ -68,6 +68,18 @@ const LogoSlideSection: React.FC = () => {
 
                 .animate-scroll:hover {
                     animation-play-state: paused;
+                }
+
+                @media (max-width: 768px) {
+                    .animate-scroll {
+                        animation: scroll 20s linear infinite;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .animate-scroll {
+                        animation: scroll 15s linear infinite;
+                    }
                 }
 
                 @keyframes scroll {

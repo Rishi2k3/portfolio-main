@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
 
             <Section className={'!p-0 z-10 relative'}>
                 {/* Hero Section */}
-                <div className="flex max-tablet-lg:flex-col pt-5 min-h-[75vh] relative">
+                <div className="flex max-tablet-lg:flex-col pt-5 min-h-[75vh] relative max-mobile-lg:pt-2 max-mobile-lg:min-h-[60vh]">
                     {/* Animated Gradient Background */}
                     <div className="absolute z-0 top-0 left-0 max-tablet-lg:top-[40%] max-mobile-sm:top-[55%] w-full h-full max-tablet-lg:h-1/2 flex justify-center items-start">
                         <div className="relative w-full h-[30%] flex justify-center items-center">
@@ -83,13 +83,13 @@ const HeroSection: React.FC = () => {
                     </div>
 
                     {/* Left Content */}
-                    <div className="basis-1/2 flex flex-col justify-center items-start gap-2 p-4 z-10 relative">
+                    <div className="basis-1/2 flex flex-col justify-center items-start gap-2 p-4 z-10 relative max-mobile-lg:items-center max-mobile-lg:text-center">
                         <TextReveal>
-                            <span className="text-4xl font-bold">Hello, It&apos;s me</span>
+                            <span className="text-4xl font-bold max-mobile-lg:text-2xl max-mobile-xs:text-lg">Hello, It&apos;s me</span>
                         </TextReveal>
 
                         <TextReveal className={'bg-primary'}>
-                            <h1 className="text-6xl font-bold relative text-primary">
+                            <h1 className="text-6xl font-bold relative text-primary max-mobile-lg:text-3xl max-mobile-xs:text-xl">
                                 Rishi Agarwal
                             </h1>
                         </TextReveal>
@@ -103,20 +103,23 @@ const HeroSection: React.FC = () => {
                                     'Frontend Enthusiast',
                                     'Problem Solver',
                                 ]}
+                                className="max-mobile-lg:text-base"
                             />
                         </TextReveal>
 
                         <TextReveal className={'bg-muted-foreground'}>
-                            I specialize in building high-performance web applications with modern
-                            JavaScript technologies like React, Next.js, Node.js, and MongoDB.
+                            <span className="max-mobile-lg:text-sm">
+                                I specialize in building high-performance web applications with modern
+                                JavaScript technologies like React, Next.js, Node.js, and MongoDB.
+                            </span>
                         </TextReveal>
 
-                        <div className="my-3">
-                            <Link href={'#contact'}>
-                                <Button size="lg">Hire Me</Button>
+                        <div className="my-3 flex gap-2 max-mobile-lg:flex-col max-mobile-lg:w-full max-mobile-lg:items-center">
+                            <Link href={'#contact'} className="w-full max-mobile-lg:w-full">
+                                <Button size="lg" className="w-full max-mobile-lg:w-full">Hire Me</Button>
                             </Link>
-                            <a href={'#projects'}>
-                                <Button variant="outline" size="lg" className="ml-2">
+                            <a href={'#projects'} className="w-full max-mobile-lg:w-full">
+                                <Button variant="outline" size="lg" className="ml-2 w-full max-mobile-lg:ml-0 max-mobile-lg:w-full">
                                     View My Work
                                 </Button>
                             </a>
@@ -124,7 +127,7 @@ const HeroSection: React.FC = () => {
                     </div>
 
                     {/* Right Content - Hero Image */}
-                    <div className="basis-1/2 flex justify-end items-end z-20 max-mobile-lg:mt-10 relative">
+                    <div className="basis-1/2 flex justify-end items-end z-20 max-mobile-lg:mt-10 relative max-mobile-lg:justify-center">
                         <SocialIcons />
                         <div>
                             <motion.div
@@ -143,7 +146,7 @@ const HeroSection: React.FC = () => {
                                     src={heroImage}
                                     alt="Rishi Agarwal"
                                     priority
-                                    className="w-[80%] ml-20 mt-20 drop-shadow-[2px_-2px_2px_rgba(0,0,0,1)]"
+                                    className="w-[80%] ml-20 mt-20 drop-shadow-[2px_-2px_2px_rgba(0,0,0,1)] max-mobile-lg:w-40 max-mobile-lg:ml-0 max-mobile-lg:mt-4 max-mobile-lg:mx-auto max-mobile-xs:w-28"
                                 />
 
                                 {/* Head Shine Animation */}
@@ -159,7 +162,7 @@ const HeroSection: React.FC = () => {
                                         repeat: Infinity,
                                         ease: 'easeInOut',
                                     }}
-                                    className="absolute -top-0 max-mobile-sm:-top-12 max-mobile-sm:right-[25%] right-[30%] w-26"
+                                    className="absolute -top-0 max-mobile-sm:-top-12 max-mobile-sm:right-[25%] right-[30%] w-26 max-mobile-lg:right-[10%] max-mobile-lg:w-16 max-mobile-xs:hidden"
                                 >
                                     <Image src={headShine} alt="headShine" />
                                 </motion.div>
@@ -169,7 +172,7 @@ const HeroSection: React.FC = () => {
                             <motion.div
                                 animate={{ x: [0, '5px', 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                                className="absolute top-[50%] left-[15%] max-tablet-lg:top-1/2 max-tablet-lg:left-[10%] max-mobile-lg:top-[45%]  max-mobile-lg:left-[5%] w-20 max-tablet-lg:w-32 max-mobile-lg:w-24 opacity-65 dark:opacity-100 dark:brightness-[3] max-mobile-sm:top-[45%]"
+                                className="absolute top-[50%] left-[15%] max-tablet-lg:top-1/2 max-tablet-lg:left-[10%] max-mobile-lg:top-[45%]  max-mobile-lg:left-[5%] w-20 max-tablet-lg:w-32 max-mobile-lg:w-24 opacity-65 dark:opacity-100 dark:brightness-[3] max-mobile-sm:top-[45%] max-mobile-lg:hidden"
                             >
                                 <Image src={dottedArrow} alt="dottedArrow" />
                             </motion.div>
@@ -180,7 +183,7 @@ const HeroSection: React.FC = () => {
                     <motion.div
                         animate={{ rotate: [0, 10, 0], y: [0, '15px', 0] }}
                         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="absolute top-5 right-16 w-20 max-mobile-sm:w-12 max-mobile-sm:top-2 max-tablet-lg:right-24 max-mobile-sm:right-28"
+                        className="absolute top-5 right-16 w-20 max-mobile-sm:w-12 max-mobile-sm:top-2 max-tablet-lg:right-24 max-mobile-sm:right-28 max-mobile-xs:hidden"
                     >
                         <Image src={crossArrow} alt="crossArrow" />
                     </motion.div>

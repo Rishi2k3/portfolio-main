@@ -6,9 +6,10 @@ import { useState, useEffect } from 'react';
 interface TypingEffectProps {
     staticText: string;
     words: string[];
+    className?: string;
 }
 
-const TypingEffect: React.FC<TypingEffectProps> = ({ staticText, words }) => {
+const TypingEffect: React.FC<TypingEffectProps> = ({ staticText, words, className }) => {
     const [wordIndex, setWordIndex] = useState<number>(0);
     const [text, setText] = useState<string>('');
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
@@ -46,6 +47,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ staticText, words }) => {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            className={className}
         >
             {staticText} <span className="text-secondary text-2xl ">{text}</span>
             <motion.span

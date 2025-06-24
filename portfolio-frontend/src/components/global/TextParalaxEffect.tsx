@@ -61,9 +61,9 @@ interface PhraseProps {
 
 const Phrase: React.FC<PhraseProps> = ({ src }) => {
     return (
-        <div className={'px-5 flex gap-5 items-center'}>
-            <p className="text-[5vw] leading-[5vw]">Web Developer</p>
-            <span className="relative h-[4vw] aspect-[1/1]  overflow-hidden">
+        <div className={'px-5 flex gap-5 items-center max-mobile-lg:px-3 max-mobile-lg:gap-3 max-mobile-sm:px-2 max-mobile-sm:gap-2'}>
+            <p className="text-[5vw] leading-[5vw] max-mobile-lg:text-[6vw] max-mobile-lg:leading-[6vw] max-mobile-sm:text-[7vw] max-mobile-sm:leading-[7vw]">Web Developer</p>
+            <span className="relative h-[4vw] aspect-[1/1] overflow-hidden max-mobile-lg:h-[5vw] max-mobile-sm:h-[6vw]">
                 <Image
                     style={{ objectFit: 'cover' }}
                     src={src}

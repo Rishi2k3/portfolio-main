@@ -4,22 +4,22 @@ import Skills from '@/components/About/Skills';
 
 const SkillSection: React.FC = () => {
     return (
-        <Section className={'relative py-10'}>
+        <Section className={'relative py-10 max-mobile-lg:py-6'}>
             {/* <SectionBackgrpound1 /> */}
-            <div className="text-center w-4/6 mx-auto max-tablet-lg:w-full">
-                <h1>What I Know</h1>
-                <p>
+            <div className="text-center w-4/6 mx-auto max-tablet-lg:w-full max-mobile-lg:px-4">
+                <h1 className="max-mobile-lg:text-2xl">What I Know</h1>
+                <p className="max-mobile-lg:text-sm max-mobile-xs:text-xs">
                     I specialize in building modern, scalable, and user-friendly web applications.
                     My expertise spans across frontend and backend development, with a strong focus
                     on technologies like React, Node.js, and MongoDB. I am passionate about solving
                     complex problems and delivering high-quality solutions.
                 </p>
             </div>
-            <div className="flex">
-                <div className="w-20 my-auto">
+            <div className="flex max-mobile-lg:flex-col">
+                <div className="w-20 my-auto max-mobile-lg:hidden">
                     <h1 className="rotate-[-90deg]">Skills</h1>
                 </div>
-                <div>
+                <div className="flex-1">
                     <Skills />
                 </div>
             </div>

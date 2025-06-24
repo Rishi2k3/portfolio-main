@@ -37,7 +37,7 @@ export default function ParallaxStack({ projects }: ParallaxStackProps) {
     });
 
     return (
-        <main ref={containerRef}>
+        <main ref={containerRef} className="max-mobile-lg:space-y-6">
             {projects.map((project, i) => {
                 const targetScale = 1 - (projects.length - i) * 0.03; // Smooth scaling effect
                 return (
@@ -74,36 +74,41 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
     const translateY = useTransform(progress, [0, 1.5], [index * 50, 15]);
 
     return (
-        <motion.div ref={cardRef} className="sticky w-full top-20 h-screen" style={{ translateY }}>
+        <motion.div 
+            ref={cardRef} 
+            className="sticky w-full top-20 h-screen max-mobile-lg:relative max-mobile-lg:top-auto max-mobile-lg:h-auto max-mobile-lg:sticky-none" 
+            style={{ translateY: window.innerWidth > 1024 ? translateY : 0 }}
+        >
             <motion.div
-                className={`w-full max-tablet-lg:min-h-[50vh] max-mobile-lg:min-h-[60vh] rounded-2xl overflow-hidden bg-card relative shadow-lg hover:shadow-[0px_5px_20px] hover:shadow-muted border border-border ${project.color} origin-top z-10`}
-                style={{ scale }}
+                className={`w-full max-tablet-lg:min-h-[50vh] max-mobile-lg:min-h-auto rounded-2xl overflow-hidden bg-card relative shadow-lg hover:shadow-[0px_5px_20px] hover:shadow-muted border border-border ${project.color} origin-top z-10`}
+                style={{ scale: window.innerWidth > 1024 ? scale : 1 }}
             >
                 <div className="flex max-mobile-lg:flex-col justify-between w-full relative z-20">
                     {/* Image Section */}
-                    <div className="basis-4/6 rounded-3xl p-4 max-mobile-sm:p-2 overflow-hidden">
-                        <div className="w-full h-full overflow-hidden rounded-xl border border-border">
+                    <div className="basis-4/6 rounded-3xl p-4 max-mobile-sm:p-2 overflow-hidden max-mobile-lg:basis-auto">
+                        <div className={`w-full h-full overflow-hidden rounded-xl border border-border max-mobile-lg:h-48`}>
                             <Image
                                 src={project.image}
                                 width={1400}
                                 height={1000}
                                 alt={project.title}
                                 className="w-full h-full object-cover"
+                                style={project.id === 2 ? { objectPosition: 'top' } : {}}
                             />
                         </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="basis-2/6 flex flex-col gap-3 justify-between p-4 max-mobile-sm:p-2 max-mobile-sm:pt-0 relative">
+                    <div className="basis-2/6 flex flex-col gap-3 justify-between p-4 max-mobile-sm:p-2 max-mobile-sm:pt-0 relative max-mobile-lg:basis-auto">
                         <div>
-                            <h1 className="max-mobile-sm:text-2xl">{project.title}</h1>
-                            <p className="text-lg max-mobile-sm:text-md max-mobile-sm:max-h-[20vh] max-mobile-sm:overflow-y-auto max-mobile-sm:text-ellipsis">
+                            <h1 className="max-mobile-sm:text-xl max-mobile-xs:text-lg font-bold">{project.title}</h1>
+                            <p className="text-lg max-mobile-sm:text-sm max-mobile-xs:text-xs max-mobile-sm:max-h-[15vh] max-mobile-sm:overflow-y-auto max-mobile-sm:text-ellipsis leading-relaxed">
                                 {project.description}
                             </p>
-                            <div className="flex flex-wrap gap-2 mt-3">
+                            <div className="flex flex-wrap gap-2 mt-3 max-mobile-sm:gap-1">
                                 {project.techUsed.map(tech => (
                                     <Badge
-                                        className="rounded-sm text-base shadow-lg text-nowrap"
+                                        className="rounded-sm text-base shadow-lg text-nowrap max-mobile-sm:text-xs max-mobile-xs:text-xs"
                                         key={tech}
                                     >
                                         {tech}
@@ -113,38 +118,38 @@ const Card: React.FC<CardProps> = ({ project, progress, range, targetScale, inde
                         </div>
 
                         {/* Buttons Section */}
-                        <div className="flex gap-2 items-end justify-between">
-                            <div className="flex gap-3 h-15">
+                        <div className="flex gap-2 justify-between mt-6 mb-8 max-mobile-lg:flex-col max-mobile-lg:gap-3">
+                            <div className="flex gap-3 h-15 max-mobile-lg:w-full max-mobile-lg:justify-center">
                                 <Link
-                                href={project.codeLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-foreground no-underline"
+                                    href={project.codeLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-foreground no-underline max-mobile-lg:flex-1"
                                 >
-                                <Button className='flex items-center  text-base font-bold mt-0.5 '>
-                                    Live Website
-                                    <Code className="translate-y-[-2.5px] mt-1" />
-                                </Button>
+                                    <Button size="lg" className='flex items-center text-base font-bold max-mobile-lg:w-full max-mobile-lg:text-sm'>
+                                        Live Website
+                                        <Code className="translate-y-[-2.5px] mt-1 max-mobile-sm:w-4 max-mobile-sm:h-4" />
+                                    </Button>
                                 </Link>
                                 <Link
                                     href={project.demoLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-foreground no-underline"
+                                    className="text-foreground no-underline max-mobile-lg:flex-1"
                                 >
                                     <Button
                                         variant="outline"
-                                        className="flex items-center  text-base font-bold h-10 "
+                                        size="lg"
+                                        className="flex items-center text-base font-bold max-mobile-lg:w-full max-mobile-lg:text-sm"
                                     >
-                                        Demo <SquareArrowOutUpRight className="translate-y-[-2.5px] mt-1" />
-                                        
+                                        Demo <SquareArrowOutUpRight className="translate-y-[-2.5px] mt-1 max-mobile-sm:w-4 max-mobile-sm:h-4" />
                                     </Button>
                                 </Link>
                             </div>
                             <Image
                                 src={project.logo}
                                 alt="project logo"
-                                className="absolute right-2 bottom-2 w-20"
+                                className="absolute right-2 bottom-2 w-20 max-mobile-lg:relative max-mobile-lg:right-auto max-mobile-lg:bottom-auto max-mobile-lg:w-16 max-mobile-sm:w-12"
                             />
                         </div>
                     </div>
