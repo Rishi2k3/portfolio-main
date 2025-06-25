@@ -9,7 +9,6 @@ import NoniconsNode16 from '@/assets/icons/NoniconsNode16';
 import SimpleIconsExpress from '@/assets/icons/SimpleIconsExpress';
 import TablerBrandNextjs from '@/assets/icons/TablerBrandNextjs';
 import SimpleIconsMongodb from '@/assets/icons/SimpleIconsMongodb';
-import SimpleIconsMongoose from '@/assets/icons/SimpleIconsMongoose';
 import UiwLinux from '@/assets/icons/UiwLinux';
 import LogosJwtIcon from '@/assets/icons/LogosJwtIcon';
 import MingcuteVscodeFill from '@/assets/icons/MingcuteVscodeFill';
