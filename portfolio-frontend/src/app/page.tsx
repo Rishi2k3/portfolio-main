@@ -34,8 +34,8 @@ const Home: React.FC = () => {
                 <ProjectSection/>
             </div>
             <div id="leetcode" className="py-10 px-5 w-5/6 mx-auto transition-all duration-300 hover:shadow-[0_0_15px_5px_rgba(255,255,255,0.3)] hover:transform hover:translate-y-[-5px] bg-[linear-gradient(135deg,theme(colors.card)_25%,theme(colors.background)_25%,theme(colors.background)_50%,theme(colors.card)_50%,theme(colors.card)_75%,theme(colors.background)_75%,theme(colors.background)_100%)] bg-[length:32px_32px] border border-border">
-                <LeetCodeSection/>
-            </div>
+    <LeetCodeSection/>
+</div>
             <div id="contact">
                 <ContactSection/>
             </div>

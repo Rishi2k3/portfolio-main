@@ -42,6 +42,7 @@ interface LeetCodeData {
   currentStreak: number;
   acceptanceRate: string;
   lastUpdated?: number;
+  calendar: Record<string, string>;
 }
 
 // Define error type for better type safety
@@ -102,6 +103,14 @@ interface BadgeData {
   badgesCount?: number;
   upcomingBadges?: UpcomingBadge[];
   activeBadge?: Badge;
+}
+
+// Add contest rating type
+interface ContestRating {
+  rating: number;
+  globalRanking: number;
+  totalParticipants: number;
+  topPercentage: number;
 }
 
 // Common utility functions to avoid code duplication
@@ -219,7 +228,8 @@ const utils = {
     maxStreak: 30,
     currentStreak: 5,
     acceptanceRate: "65.4",
-    lastUpdated: Date.now()
+    lastUpdated: Date.now(),
+    calendar: {}
   }),
   
   // Format badges properly from the new API response structure
@@ -305,6 +315,7 @@ const LeetCodeSection = () => {
   const [debugLog, setDebugLog] = useState<string[]>([]);
   const [showDebug, setShowDebug] = useState(false);
   const [isUsingCachedData, setIsUsingCachedData] = useState(false);
+  const [contestRating, setContestRating] = useState<ContestRating | null>(null);
 
   // Helper to add debug messages
   const addDebugMessage = (message: string) => {
@@ -480,6 +491,40 @@ const LeetCodeSection = () => {
     fetchData();
   }, []);
 
+  // Fetch contest rating on mount
+  useEffect(() => {
+    const fetchContestRating = async () => {
+      try {
+        const res = await axios.get('https://alfa-leetcode-api.onrender.com/userContestRankingInfo/rishi2k3');
+        // If the API returns a string, check for rate limit message
+        if (typeof res.data === 'string' && res.data.toLowerCase().includes('too many request')) {
+          setErrorDetails('LeetCode contest API rate limit reached. Please try again in 1 hour.');
+          setContestRating(null);
+          return;
+        }
+        // The API returns an array of contest objects, find the latest attended contest with a rating
+        const contests = res.data || [];
+        const latest = Array.isArray(contests)
+          ? contests.reverse().find((c: any) => c.attended && c.rating && c.ranking && c.ranking > 0)
+          : null;
+        if (latest) {
+          setContestRating({
+            rating: latest.rating,
+            globalRanking: latest.ranking,
+            totalParticipants: latest.totalParticipants || 0,
+            topPercentage: latest.topPercentage || 0,
+          });
+        } else {
+          setContestRating(null);
+        }
+      } catch (err) {
+        setContestRating(null);
+        setErrorDetails('Failed to fetch contest rating.');
+      }
+    };
+    fetchContestRating();
+  }, []);
+
   // Function to handle image loading errors
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, badge: Badge | UpcomingBadge) => {
     const target = e.target as HTMLImageElement;
@@ -528,46 +573,47 @@ const LeetCodeSection = () => {
     acceptanceRate = "N/A",
     totalSubmissions = 0,
     lastUpdated = Date.now(),
+    calendar = {},
   } = leetcodeData || {};
 
-  // Generate activity months for display
-  const activityMonths = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-  
-  // Render activity squares
+  // Helper to get color based on activity count
+  const getActivityColor = (count: number) => {
+    if (count >= 10) return "bg-green-500";
+    if (count >= 5) return "bg-green-600";
+    if (count >= 2) return "bg-green-700";
+    if (count === 1) return "bg-green-900";
+    return "bg-gray-700";
+  };
+
+  // Render real activity calendar
   const renderActivityGrid = () => {
-    return activityMonths.map((month, monthIndex) => (
-      <div key={month + monthIndex} className="flex flex-col mb-1">
-        <div className="grid grid-cols-7 gap-1">
-          {Array.from({ length: 7 }, (_, i) => {
-            // Generate activity level with more consistent pattern
-            // Use a deterministic approach based on month and day
-            const seed = (monthIndex * 7 + i) % 31;
-            let activityLevel = 0;
-            
-            // Create a more realistic pattern
-            if (seed % 7 === 0) activityLevel = 3; // High activity on specific days
-            else if (seed % 3 === 0) activityLevel = 2; // Medium activity
-            else if (seed % 2 === 0) activityLevel = 1; // Low activity
-            
-            // Map activity levels to colors
-            let bgColor = "bg-gray-700"; // No activity
-            if (activityLevel === 1) bgColor = "bg-green-900";
-            else if (activityLevel === 2) bgColor = "bg-green-700";
-            else if (activityLevel === 3) bgColor = "bg-green-500";
-            
-            return (
-              <div 
-                key={`${month}-${i}`}
-                className={`w-3 h-3 ${bgColor} rounded-sm`}
-                aria-label={`Activity level ${activityLevel} for ${month} day ${i+1}`}
-                title={activityLevel > 0 ? `${activityLevel} submissions` : "No submissions"}
+    const days = Object.entries(calendar || {}).sort(([a], [b]) => (a > b ? 1 : -1)).map(([date, count]) => [date, Number(count)] as [string, number]);
+    if (days.length === 0) {
+      return <div className="text-muted-foreground">No activity data available.<br/>Calendar debug: <pre className="text-xs whitespace-pre-wrap">{JSON.stringify(calendar, null, 2)}</pre></div>;
+    }
+    // Show up to 12 weeks (84 days)
+    const last84 = days.slice(-84);
+    // Group by week
+    const weeks: [string, number][][] = [];
+    for (let i = 0; i < last84.length; i += 7) {
+      weeks.push(last84.slice(i, i + 7));
+    }
+    return (
+      <div className="flex gap-1">
+        {weeks.map((week, weekIdx) => (
+          <div key={weekIdx} className="flex flex-col gap-1">
+            {week.map(([date, count], dayIdx) => (
+              <div
+                key={date}
+                className={`w-3 h-3 ${getActivityColor(count)} rounded-sm`}
+                title={`${date}: ${count} solved`}
+                aria-label={`Solved ${count} on ${date}`}
               />
-            );
-          })}
-        </div>
-        <div className="text-xs text-center mt-1">{month}</div>
+            ))}
+          </div>
+        ))}
       </div>
-    ));
+    );
   };
 
   return (
@@ -628,6 +674,22 @@ const LeetCodeSection = () => {
         </div>
       )}
       
+      {/* Contest Rating Section */}
+      <div className="mb-8 bg-background rounded-lg p-6 border border-border flex flex-col items-center">
+        <h3 className="text-xl font-semibold mb-2 text-primary">LeetCode Contest Rating</h3>
+        {contestRating ? (
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-3xl font-bold text-yellow-400">{contestRating.rating}</div>
+            <div className="text-sm text-muted-foreground">Global Rank: <span className="font-semibold text-primary">{contestRating.globalRanking}</span></div>
+            <div className="text-sm text-muted-foreground">Top <span className="font-semibold text-primary">{contestRating.topPercentage}%</span> of {contestRating.totalParticipants} participants</div>
+          </div>
+        ) : errorDetails && errorDetails.toLowerCase().includes('rate limit') ? (
+          <div className="text-destructive-foreground">LeetCode contest API rate limit reached. Please try again in 1 hour.</div>
+        ) : (
+          <div className="text-muted-foreground">Contest rating data not available.</div>
+        )}
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-8 min-h-[500px] max-mobile-lg:min-h-auto max-mobile-lg:gap-4">
         {/* Left section - Stats */}
         <div className="flex-1 bg-background rounded-lg p-6 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
@@ -724,14 +786,12 @@ const LeetCodeSection = () => {
             </div>
           </div>
         </div>
-
         {/* Right section - Badges */}
         <div className="flex-1 bg-background rounded-lg p-6 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
           <div className="flex justify-between items-center mb-6 max-mobile-lg:mb-4">
             <div className="text-3xl font-bold max-mobile-lg:text-2xl max-mobile-sm:text-xl text-primary">Badges</div>
             <div className="text-3xl font-bold max-mobile-lg:text-2xl max-mobile-sm:text-xl text-primary">{badges.length}</div>
           </div>
-                  
           <div className="flex flex-wrap justify-center md:justify-start gap-8 mb-8 max-mobile-lg:gap-4 max-mobile-sm:gap-3">
             {badges.length > 0 ? (
               badges.map((badge, index) => (
@@ -772,7 +832,6 @@ const LeetCodeSection = () => {
               </div>
             )}
           </div>
-                  
           <div className="mt-6 max-mobile-lg:mt-4">
             <div className="text-muted-foreground text-lg max-mobile-lg:text-base max-mobile-sm:text-sm">Most Recent Badge</div>
             <div className="text-2xl font-semibold mt-1 max-mobile-lg:text-xl max-mobile-sm:text-lg text-primary">
@@ -784,14 +843,6 @@ const LeetCodeSection = () => {
               </div>
             )}
           </div>
-        </div>
-      </div>
-
-      {/* Activity Calendar */}
-      <div className="mt-8 rounded-lg p-6 max-mobile-lg:mt-4 max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border bg-[linear-gradient(135deg,theme(colors.card)_25%,theme(colors.background)_25%,theme(colors.background)_50%,theme(colors.card)_50%,theme(colors.card)_75%,theme(colors.background)_75%,theme(colors.background)_100%)] bg-[length:32px_32px]">
-        <h3 className="text-xl font-medium mb-4 max-mobile-lg:text-lg max-mobile-sm:text-base text-primary">Activity Calendar</h3>
-        <div className="flex overflow-x-auto pb-2 max-mobile-lg:pb-1">
-          {renderActivityGrid()}
         </div>
       </div>
     </div>

@@ -109,8 +109,8 @@ const HeroSection: React.FC = () => {
 
                         <TextReveal className={'bg-muted-foreground'}>
                             <span className="max-mobile-lg:text-sm">
-                                I specialize in building high-performance web applications with modern
-                                JavaScript technologies like React, Next.js, Node.js, and MongoDB.
+                            I specialize in building high-performance web applications with modern
+                            JavaScript technologies like React, Next.js, Node.js, and MongoDB.
                             </span>
                         </TextReveal>
 

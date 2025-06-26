@@ -10,7 +10,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* your existing config options here */
   images: {
-    domains: ['assets.leetcode.com', 'leetcode.com'],
+    domains: ['assets.leetcode.com', 'leetcode.com', 'leetcode-solved-problems.vercel.app'],
   },
 };
 

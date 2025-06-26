@@ -74,45 +74,7 @@ const projects: Project[] = [
         codeLink: 'https://razorpay-rishi.vercel.app',
         Github:"",
     },
-    // {
-    //     id: 3,
-    //     title: 'TalkMates - Connect, Learn, and Grow',
-    //     description:
-    //         'TalkMates is an online tutor booking platform that connects learners with expert tutors worldwide. It offers personalized learning experiences, flexible scheduling, secure payments, and global networking to help users enhance their skills in various subjects and languages. 🚀',
-    //     image: projectImage3,
-    //     color: 'bg-card',
-    //     logo: linux,
-    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-    //     demoLink: 'https://ph-a11.web.app/',
-    //     codeLink: '',
-    //     Github:"",
-    // },
-    // {
-    //     id: 4,
-    //     title: 'EquiSports - Premium Sports Gear Hub',
-    //     description:
-    //         'EquiSports – A sleek and responsive e-commerce platform for sports enthusiasts to browse, purchase, and manage sports equipment. Features secure authentication, dynamic product management, and an interactive UI with smooth animations. Built with React, Tailwind CSS, Firebase, Node.js, Express.js, and MongoDB. 🚀',
-    //     image: projectImage4,
-    //     color: 'bg-card',
-    //     logo: linux,
-    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-    //     demoLink: 'https://ph-assignment-10-79f51.web.app/',
-    //     codeLink: '',
-    //     Github:"",
-    // },
-    // {
-    //     id: 5,
-    //     title: 'Career Craft - Your Personalized Career Guide',
-    //     description:
-    //         'Career Craft is a comprehensive career counseling platform that provides students and professionals with expert career advice, skill assessments, and personalized career roadmaps. It integrates an AI-driven recommendation system for better decision-making.',
-    //     image: projectImage5,
-    //     color: 'bg-card',
-    //     logo: linux,
-    //     techUsed: ['React js', 'Node Js', 'Mongodb', 'Express js'],
-    //     demoLink: 'https://ph-assignment9-fiamanillah.netlify.app/',
-    //     codeLink: '',
-    //     Github:"",
-    // },
+    
 ];
 
 const ProjectSection: React.FC = () => {
