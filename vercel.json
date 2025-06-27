@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm run build",
+  "buildCommand": "cd portfolio-frontend && pnpm install && pnpm run build",
   "outputDirectory": "portfolio-frontend/.next",
   "installCommand": "pnpm install",
   "framework": "nextjs"
