@@ -113,6 +113,14 @@ interface ContestRating {
   topPercentage: number;
 }
 
+interface Contest {
+  attended: boolean;
+  rating: number;
+  ranking: number;
+  totalParticipants?: number;
+  topPercentage?: number;
+}
+
 // Common utility functions to avoid code duplication
 const utils = {
   // Helper function to format badge icons
@@ -505,7 +513,7 @@ const LeetCodeSection = () => {
         // The API returns an array of contest objects, find the latest attended contest with a rating
         const contests = res.data || [];
         const latest = Array.isArray(contests)
-          ? contests.reverse().find((c: any) => c.attended && c.rating && c.ranking && c.ranking > 0)
+          ? contests.reverse().find((c: Contest) => c.attended && c.rating && c.ranking && c.ranking > 0)
           : null;
         if (latest) {
           setContestRating({
@@ -517,7 +525,7 @@ const LeetCodeSection = () => {
         } else {
           setContestRating(null);
         }
-      } catch (err) {
+      } catch {
         setContestRating(null);
         setErrorDetails('Failed to fetch contest rating.');
       }
@@ -602,7 +610,7 @@ const LeetCodeSection = () => {
       <div className="flex gap-1">
         {weeks.map((week, weekIdx) => (
           <div key={weekIdx} className="flex flex-col gap-1">
-            {week.map(([date, count], dayIdx) => (
+            {week.map(([date, count]) => (
               <div
                 key={date}
                 className={`w-3 h-3 ${getActivityColor(count)} rounded-sm`}
@@ -842,6 +850,11 @@ const LeetCodeSection = () => {
                 Earned {new Date(badges[0].creationDate).toLocaleDateString()}
               </div>
             )}
+          </div>
+          {/* Activity Calendar */}
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold mb-3 text-primary">Activity Calendar</h4>
+            {renderActivityGrid()}
           </div>
         </div>
       </div>
