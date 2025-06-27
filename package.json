@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-main",
+  "version": "1.0.0",
+  "description": "Portfolio project with frontend, backend, and admin",
+  "private": true,
+  "workspaces": [
+    "portfolio-frontend",
+    "portfolio-backend",
+    "portfolio-admin"
+  ],
+  "scripts": {
+    "build": "cd portfolio-frontend && pnpm run build",
+    "dev": "cd portfolio-frontend && pnpm run dev",
+    "start": "cd portfolio-frontend && pnpm run start"
+  }
+} 
