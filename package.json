@@ -9,7 +9,7 @@
     "portfolio-admin"
   ],
   "scripts": {
-    "build": "cd portfolio-frontend && pnpm run build",
+    "build": "cd portfolio-frontend && pnpm install && pnpm run build",
     "dev": "cd portfolio-frontend && pnpm run dev",
     "start": "cd portfolio-frontend && pnpm run start"
   }
