@@ -593,37 +593,6 @@ const LeetCodeSection = () => {
     return "bg-gray-700";
   };
 
-  // Render real activity calendar
-  const renderActivityGrid = () => {
-    const days = Object.entries(calendar || {}).sort(([a], [b]) => (a > b ? 1 : -1)).map(([date, count]) => [date, Number(count)] as [string, number]);
-    if (days.length === 0) {
-      return <div className="text-muted-foreground">No activity data available.<br/>Calendar debug: <pre className="text-xs whitespace-pre-wrap">{JSON.stringify(calendar, null, 2)}</pre></div>;
-    }
-    // Show up to 12 weeks (84 days)
-    const last84 = days.slice(-84);
-    // Group by week
-    const weeks: [string, number][][] = [];
-    for (let i = 0; i < last84.length; i += 7) {
-      weeks.push(last84.slice(i, i + 7));
-    }
-    return (
-      <div className="flex gap-1">
-        {weeks.map((week, weekIdx) => (
-          <div key={weekIdx} className="flex flex-col gap-1">
-            {week.map(([date, count]) => (
-              <div
-                key={date}
-                className={`w-3 h-3 ${getActivityColor(count)} rounded-sm`}
-                title={`${date}: ${count} solved`}
-                aria-label={`Solved ${count} on ${date}`}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className="p-6 bg-card text-foreground rounded-xl shadow-lg max-w-4xl mx-auto max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
       {/* Header with refresh button and last updated info */}
