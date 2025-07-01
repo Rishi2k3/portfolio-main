@@ -1,25 +1,9 @@
 'use client';
 
 import { motion } from 'motion/react'; // Keep the motion import as it is
-import TablerBrandRedux from '@/assets/icons/TablerBrandRedux';
-import NoniconsReact16 from '@/assets/icons/NoniconsReact16';
-import PhFileJsBold from '@/assets/icons/PhFileJsBold';
-import TeenyiconsTailwindSolid from '@/assets/icons/TeenyiconsTailwindSolid';
-import NoniconsNode16 from '@/assets/icons/NoniconsNode16';
-import SimpleIconsExpress from '@/assets/icons/SimpleIconsExpress';
-import TablerBrandNextjs from '@/assets/icons/TablerBrandNextjs';
-import SimpleIconsMongodb from '@/assets/icons/SimpleIconsMongodb';
-import UiwLinux from '@/assets/icons/UiwLinux';
-import LogosJwtIcon from '@/assets/icons/LogosJwtIcon';
-import MingcuteVscodeFill from '@/assets/icons/MingcuteVscodeFill';
-import DeviconPlainWebstorm from '@/assets/icons/DeviconPlainWebstorm';
-import DeviconPlainPostman from '@/assets/icons/DeviconPlainPostman';
-import TeenyiconsGitSolid from '@/assets/icons/TeenyiconsGitSolid';
-import HugeiconsGithub from '@/assets/icons/HugeiconsGithub';
 
 // Define the type for a skill
 interface Skill {
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Type for the icon component
     name: string; // Name of the skill
 }
 
@@ -32,53 +16,53 @@ const Skills: React.FC = () => {
     // Define the categories object with comprehensive skills
     const categories: Categories = {
         programming: [
-            { icon: PhFileJsBold, name: 'JavaScript' },
-            { icon: PhFileJsBold, name: 'Python' },
-            { icon: PhFileJsBold, name: 'C' },
-            { icon: PhFileJsBold, name: 'C++' },
-            { icon: PhFileJsBold, name: 'Java' },
-            { icon: PhFileJsBold, name: 'TypeScript' },
-            { icon: PhFileJsBold, name: 'SQL' },
+            { name: 'JavaScript' },
+            { name: 'Python' },
+            { name: 'C' },
+            { name: 'C++' },
+            { name: 'Java' },
+            { name: 'TypeScript' },
+            { name: 'SQL' },
         ],
         frontend: [
-            { icon: NoniconsReact16, name: 'React.js' },
-            { icon: TablerBrandNextjs, name: 'Next.js' },
-            { icon: TeenyiconsTailwindSolid, name: 'Tailwind CSS' },
-            { icon: TablerBrandRedux, name: 'Material UI' },
+            { name: 'React.js' },
+            { name: 'Next.js' },
+            { name: 'Tailwind CSS' },
+            { name: 'Material UI' },
         ],
         backend: [
-            { icon: NoniconsNode16, name: 'Node.js' },
-            { icon: SimpleIconsExpress, name: 'Express.js' },
-            { icon: PhFileJsBold, name: 'Flask' },
-            { icon: LogosJwtIcon, name: 'REST APIs' },
-            { icon: LogosJwtIcon, name: 'GraphQL' },
+            { name: 'Node.js' },
+            { name: 'Express.js' },
+            { name: 'Flask' },
+            { name: 'REST APIs' },
+            { name: 'GraphQL' },
         ],
         dataML: [
-            { icon: PhFileJsBold, name: 'NumPy' },
-            { icon: PhFileJsBold, name: 'Pandas' },
-            { icon: PhFileJsBold, name: 'Scikit-learn' },
-            { icon: PhFileJsBold, name: 'TensorFlow' },
+            { name: 'NumPy' },
+            { name: 'Pandas' },
+            { name: 'Scikit-learn' },
+            { name: 'TensorFlow' },
         ],
         databases: [
-            { icon: SimpleIconsMongodb, name: 'MySQL' },
-            { icon: SimpleIconsMongodb, name: 'PostgreSQL' },
-            { icon: SimpleIconsMongodb, name: 'MongoDB' },
-            { icon: SimpleIconsMongodb, name: 'Firebase' },
+            { name: 'MySQL' },
+            { name: 'PostgreSQL' },
+            { name: 'MongoDB' },
+            { name: 'Firebase' },
         ],
         blockchain: [
-            { icon: PhFileJsBold, name: 'Ethereum' },
-            { icon: PhFileJsBold, name: 'Solidity' },
-            { icon: PhFileJsBold, name: 'Hardhat' },
-            { icon: PhFileJsBold, name: 'Ethers.js' },
-            { icon: PhFileJsBold, name: 'Smart Contracts' },
+            { name: 'Ethereum' },
+            { name: 'Solidity' },
+            { name: 'Hardhat' },
+            { name: 'Ethers.js' },
+            { name: 'Smart Contracts' },
         ],
         tools: [
-            { icon: MingcuteVscodeFill, name: 'VS Code' },
-            { icon: DeviconPlainWebstorm, name: 'WebStorm' },
-            { icon: DeviconPlainPostman, name: 'Postman' },
-            { icon: TeenyiconsGitSolid, name: 'Git' },
-            { icon: HugeiconsGithub, name: 'GitHub' },
-            { icon: UiwLinux, name: 'Linux' },
+            { name: 'VS Code' },
+            { name: 'WebStorm' },
+            { name: 'Postman' },
+            { name: 'Git' },
+            { name: 'GitHub' },
+            { name: 'Linux' },
         ],
     };
 
@@ -107,10 +91,9 @@ const Skills: React.FC = () => {
                                     ease: 'easeOut',
                                 }}
                                 viewport={{ once: true }}
-                                className="bg-secondary text-secondary-foreground text-2xl py-2 px-3 font-bold flex gap-2 items-center justify-center border border-border rounded-lg hover:bg-secondary/90 hover:shadow-lg max-mobile-lg:text-lg max-mobile-lg:py-1.5 max-mobile-lg:px-2 max-mobile-xs:text-sm max-mobile-xs:py-1 max-mobile-xs:px-1.5"
+                                className="bg-secondary text-secondary-foreground text-2xl py-2 px-3 font-bold flex items-center justify-center border border-border rounded-lg hover:bg-secondary/90 hover:shadow-lg max-mobile-lg:text-lg max-mobile-lg:py-1.5 max-mobile-lg:px-2 max-mobile-xs:text-sm max-mobile-xs:py-1 max-mobile-xs:px-1.5"
                             >
-                                <skill.icon className="max-mobile-lg:w-5 max-mobile-lg:h-5 max-mobile-xs:w-4 max-mobile-xs:h-4" />
-                                <span className="max-mobile-xs:hidden">{skill.name}</span>
+                                <span>{skill.name}</span>
                             </motion.div>
                         ))}
                     </div>
