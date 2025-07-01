@@ -581,17 +581,7 @@ const LeetCodeSection = () => {
     acceptanceRate = "N/A",
     totalSubmissions = 0,
     lastUpdated = Date.now(),
-    calendar = {},
   } = leetcodeData || {};
-
-  // Helper to get color based on activity count
-  const getActivityColor = (count: number) => {
-    if (count >= 10) return "bg-green-500";
-    if (count >= 5) return "bg-green-600";
-    if (count >= 2) return "bg-green-700";
-    if (count === 1) return "bg-green-900";
-    return "bg-gray-700";
-  };
 
   return (
     <div className="p-6 bg-card text-foreground rounded-xl shadow-lg max-w-4xl mx-auto max-mobile-lg:p-4 max-mobile-sm:p-3 border border-border">
