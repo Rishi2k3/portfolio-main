@@ -31,7 +31,7 @@ const Header: React.FC = () => {
                 </div>
                 <div className="basis-1/6 flex items-center justify-end gap-2">
                     <Link
-                        href="https://drive.google.com/file/d/1COlJfZSZGvWoxOA_GlU4RH5xExnsR1Us/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1BTPRgjf11z3-but8Z1bOJNklx_Opasls/view?usp=sharing"
                         target="_blank"
                     >
                         <Button className="font-bold">Resume</Button>
