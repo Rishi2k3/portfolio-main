@@ -851,11 +851,6 @@ const LeetCodeSection = () => {
               </div>
             )}
           </div>
-          {/* Activity Calendar */}
-          <div className="mt-6">
-            <h4 className="text-lg font-semibold mb-3 text-primary">Activity Calendar</h4>
-            {renderActivityGrid()}
-          </div>
         </div>
       </div>
     </div>

@@ -4,8 +4,6 @@
   "description": "Portfolio project with frontend, backend, and admin",
   "private": true,
   "scripts": {
-    "build": "npm run build",
-    "dev": "npm run dev",
-    "start": "npm run dev"
+    "build": "npm run build"
   }
 } 
