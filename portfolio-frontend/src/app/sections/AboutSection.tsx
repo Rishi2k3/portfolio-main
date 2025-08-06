@@ -90,7 +90,7 @@ const AboutSection = () => {
                         </div>
                     </div>
                     <div className="max-mobile-lg:mt-2 flex-shrink-0">
-                        <span className="text-sm max-mobile-xs:text-xs text-muted-foreground">2022 - present</span>
+                        <span className="text-sm max-mobile-xs:text-xs text-muted-foreground"></span>
                     </div>
                 </motion.div>
             </div>
